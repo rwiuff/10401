@@ -1,7 +1,7 @@
 %!TeX spellcheck = en-GB
 
 %Basics
-\documentclass[aps, prb, a4paper, english, 12pt, twocolumn, longbibliography, amsmath, amssymb, colorinlistoftodos, floatfix]{revtex4-1}
+\documentclass[aps, prb, a4paper, english, 12pt, onecolumn, longbibliography, amsmath, amssymb, colorinlistoftodos, floatfix]{revtex4-1}
 \usepackage[utf8]{inputenc}
 \usepackage{babel}
 
@@ -28,6 +28,7 @@
 	multi-part-units = single ,
 	alsoload = synchem ,
 }
+\DeclareSIUnit\atm{atm}
 
 %Appendix, TOC and Bibliography
 \usepackage{appendix}
@@ -95,6 +96,7 @@
 \setminted{fontsize=\small}
 \usemintedstyle{monokai}
 \renewcommand{\listoflistingscaption}{Listings}
+\renewcommand{\MintedPygmentize}{C:/Users/rwiuf/AppData/Roaming/Python/Python37/Scripts/pygmentize}
 
 %Definitions and new commands
 \newcommand{\degr}{^{\circ}}
@@ -108,6 +110,9 @@
 \begin{document}
 %Titlepage herunder:
 \begin{abstract}
+	\vspace{5mm}
+	\centering
+	\includegraphics[width=.5\textwidth]{Figures/ITERmachine.jpg}
 	\begin{description}
 		\item[Abstract] Abstract
 	\end{description}
@@ -141,6 +146,8 @@
 %Text
 \section{Intro}
 \input{sections/Intro.tex}
+\section{Assignment 1: A simple reactor model}
+\input{sections/Assignment1.tex}
 \begin{acknowledgments}
 	The authors would like to thank...
 \end{acknowledgments}
