@@ -117,4 +117,32 @@ The variable parameters are the electric power \(P_E\), the maximum wall loading
 % \end{figure}
 \cref{IterateTokamakDTU} includes the code for iterating the matlab model over various paremeters.
 \subsection{Elliptic Cross section}
-Freidberg's model assumes a circular cross section of the plasma. In reality this is not the case, and as of such we will now make a more realistic, yet still approximate reactor for an elliptic plasma cross section. 
+Freidberg's model assumes a circular cross section of the plasma. In reality this is not the case, and as of such we will now make a more realistic, yet still approximate reactor for an elliptic plasma cross section.
+In describing the geometry one refers to the elongation ratio:
+\begin{align}
+	\kappa = \frac{a_{\max}}{a_{\min}}
+\end{align}
+This parameter ensure a true epilliptic cross section as defined by the equation,
+\begin{align}
+	\frac{x^2}{a_{\max}}+\frac{y^2}{a_{\min}}
+\end{align}
+, even after increasing the radii to accomodate the larger ellipses describing the blanket-and-shield. This does however mean that the fixed thickness, \(b\) from Freidberg's model is variable. To find this variation the parametric ellipses defining the blanket-and-shield are defined with \(b\) being the length difference between the larger radii and the length deifference between the smaller radii
+\begin{align}
+	\mqty[x_1\\y_1] &= \mqty[a_{\min}\cos{\phi}\\\kappa a_{\min}\sin{\phi}] \\
+	\mqty[x_2\\y_2] &= \mqty[\pqty{b+a_{\min}}\cos{\phi}\\\kappa \pqty{b+a_{\min}}\sin{\phi}]
+\end{align}
+At a given angle, \(\phi\), the distance must be:
+\begin{align}
+	\vb{u}-\vb{v} &= \mqty[\cos{\phi}b\\\kappa\sin{\phi}b] \\
+	\abs{\vb{u}-\vb{v}} &= \sqrt{\cos^2{\phi}\ b^2+\kappa^2\sin^2{\phi}\ b^2}
+\end{align}
+An example is given in \cref{ShTh}. Here the parameters are:
+\begin{alignat}{3}
+	\mqty{a_{\min}\\\kappa\\b}&\ \mqty{=\\=\\=}\ &\mqty{2\\2\\1.2}
+\end{alignat}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{MatlabFigures/ShieldThickness/ShieldThickness.eps}
+	\caption{The profile of the blanket-and-shield and the thickness as a function of the angle around origo, \(\phi\). The parameters here are \(a_{\min}=2\), \(\kappa=2\) and \(b=1.2\)}
+	\label{ShTh}
+\end{figure}
