@@ -76,7 +76,7 @@
 \usepackage{url}
 \usepackage{lipsum}
 \usepackage{microtype}
-\usepackage{hyperref}
+\usepackage[pdfencoding=auto, psdextra]{hyperref}
 \hypersetup{
 	colorlinks   = true, %Colours links instead of ugly boxes
 	urlcolor     = blue, %Colour for external hyperlinks
@@ -101,7 +101,7 @@
 %Definitions and new commands
 \newcommand{\degr}{^{\circ}}
 \newcommand{\me}{\mathrm{e}}
-
+\newcommand*\mathinhead[2]{\texorpdfstring{$\boldsymbol{#1}$}{#2}}
 %PDFPages and RevTeX incompatability fix
 \makeatletter
 \AtBeginDocument{\let\LS@rot\@undefined}
