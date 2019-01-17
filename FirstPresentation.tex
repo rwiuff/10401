@@ -97,10 +97,9 @@
 \setbeamercolor{description item}{fg=DTUred}
 % -----------------------------------------------------------------------------
 
-
 \title{Assignment 1 \& 2}
 \subtitle{Course 10401}
-\author{\scshape\centering\includegraphics[width=3.5cm]{Figures/ITERmachine.jpg} \\ Nicklas Kihm (s143286) \\ Rasmus Kronborg Finnemann Wiuff (s163977)}
+\author{\scshape\centering Nicklas Kihm (s143286) \\ Rasmus Kronborg Finnemann Wiuff (s163977) \\ \vspace{7.5mm} \includegraphics[width=1cm]{Figures/DTU3CMYK.eps}}
 \date{\scshape January 17, 2019}
 
 \begin{document}
@@ -114,121 +113,293 @@
 \begin{frame}
 	\frametitle{Introduction}
 	\begin{center}
+	        \bf{Assignment 1} \hspace{5cm} \bf{Assignment 2}
 		\begin{columns}[c]
-			\column{.8\textwidth}L. R. Alcala-Jimenez, T. Passer, A. Lei, and E. V. Thomsen\\
-			“Increased Mechanical Robustness of Piezoelectric
-			Magnetoelastic Vibrational Energy Harvesters”\\
-			\href{http://orbit.dtu.dk/ws/files/140801564/Untitled.pdf}{\textbf{\nth{43}} International conference on Micro and Nano Engineering, (2017)}
+			\column{.7\textwidth}
+			\begin{description}[Goal \# 1]
+			\item[Title] Fusion power plant
+			\item[Goal] Design a tokamak using a modified version of the model presented in Freidberg's book.
+			\end{description}
 			\vskip1.5em
-			\begin{beamercolorbox}[sep=1em,wd=8cm]{redbox}
-				"This study presents a fabrication process for a mechanically
-				robust piezo electric cantilever-based VEH suitable for magne-
-				toelastic energy harvesting."
-			\end{beamercolorbox}
-			\column{.55\textwidth}
-			\begin{tikzpicture}
-				\fill[gray!10!white] (-0.4,-0.4) rectangle (8,8);
-				\begin{tcolorbox}[enhanced,
-						drop fuzzy shadow={2mm}{-1mm}{0mm}{0.1mm},
-						sharpish corners,
-						colframe=white,
-						colback=white]
-					\includegraphics[page=98,width=\columnwidth]{projects_2018.pdf}
-				\end{tcolorbox}
-			\end{tikzpicture}
-		\end{columns}
-	\end{center}
-\end{frame}
-
-
-\section{The Device}
-\subsection{The Device}
-\begin{frame}
-	\frametitle{Piezoelectric Magnetoelastic Vibrational Energy Harvester}
-	\begin{center}
-		\begin{columns}
-			\column[c]{.5\textwidth}
-			\includegraphics[width=\textwidth]{Figures/Device.eps}
-			\includegraphics[width=\textwidth]{Figures/Legend.eps}
-			\column[c]{.8\textwidth}
-			\includegraphics[width=\textwidth]{Figures/Sketch.eps}
-		\end{columns}
-	\end{center}
-\end{frame}
-
-\section{Process}
-\subsection{Growth and Mask}
-\begin{frame}
-	\frametitle{Growth and Mask}
-	\begin{columns}
-		\column[c]{.8\textwidth}
-		\begin{description}[Wet oxide Growth]
-			\item[Substrate wafer] \SI{350}{\micro\meter}, DSP, \SI[per-mode = reciprocal]{5.083e19}{\per\centi\meter\cubed} phosphorus doped, \(\Bqty{100}\) oriented silicon wafer
-			\item[Cleaning] RCA clean
-			\item[Wet Oxide Growth] \SI{12}{\hour} \SI{55}{\minute} @ \SI{1150}{\celsius}: \SI{3000}{\nano\meter}
-			\item[Lithography mask] \SI{1.5}{\micro\meter} AZ 4562 positive resist
-			\item[BHF Oxide Etch] \SI{45}{\minute} @ \SI{70}{\nano\meter\per\minute}
+			\column{.7\textwidth}
+			\begin{description}[Goal \# 1]
+			\item[Title] Design of interferometer for DTU tokamak
+			\item[Goal \# 1] To calculate the phase shift induced by O-mode radiation and investigate different microwave sources
+			\item[Goal \# 2] To design a lens system to accommodate the beam propagation in the small DTU tokamak
 		\end{description}
+		\end{columns}
+	\end{center}
+\end{frame}
+
+
+\section{Fusion power plant}
+\subsection{Fusion power plant}
+\begin{frame}
+	\frametitle{Fusion power plant- Freidberg's model}
+                \centering
+			  \begin{beamercolorbox}[sep=1em,wd=8cm]{redbox}
+              Freidberg assumes a circular plasma cross section. Output parameters presented in the textbook are calculated given a few input parameters.
+              \end{beamercolorbox}
+\end{frame}
+\begin{frame}
+	\frametitle{Input parameters}
+		\begin{table}
+	\begin{tabular}{lrl}
+		\toprule
+		Symbol                         & Quantity                                                                               &  \\
+		\midrule
+		\(n_\mathrm{flux \ fraction}\) & n flux in breeder end/n flux in breeder start& \(\bqty{}\)                                \\
+		\(C_F\)                        & Fixed cost propotionality constant &\(\bqty{\$}\)                                         \\
+		\(C_I\)                        & Nuclear island cost propotionality constant & \(\bqty{\$\cdot\si{\watt\per\meter\cubed}}\) \\
+		\(P_E\)                        & Desired output power& \(\bqty{\si{\mega\watt}}\)                                          \\
+		\(P_W\)                        & Maximum wall load &\(\bqty{\si{\mega\watt\per\meter\squared}}\)                           \\
+		\(B_{\max}\)                   & Magnetic field at the edge of the coil &\(\bqty{\si{\tesla}}\)                            \\
+		\(\sigma_{\max}\)              & Tensile strenght of the magnetic field coils& \(\bqty{\si{\atm}}\)                        \\
+		\(\eta_t\)                     & Energy conversion efficiency& \(\bqty{}\)                                                 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\end{frame}
+\begin{frame}{Output parameters}
+    \begin{table}
+	\begin{tabular}{llrl}
+		\toprule
+		Symbol                    & Quantity                                                       & Obtained values    &              \\
+		\midrule
+		\(b\)                     & Blanket-and-shield thickness                                   & 1.2037 &\si{\meter}              \\
+		\(c\)                     & Magnet coil thickness                                          & 0.7993&\si{\meter}              \\
+		\(a\)                     & Minor radius                                                   & 2.0098&\si{\meter}              \\
+		\(R_0\)                   & Major radius                                                   & 4.9583&\si{\meter}              \\
+		\(A\)                     & Aspect ratio                                                   & 2.4670 &                          \\
+		\(A_p\)                   & Plasma surface                                                 & 393.4152&\si{\meter\squared}    \\
+		\(V_p\)                   & Plasma volume                                                  & 395.3509&\si{\meter\cubed}      \\
+		\(P_\mathrm{dens}\)       & Power density                                                  & 4.9685e06&\si{\watt\per\meter}  \\
+		\(p\)                     & Plasma pressure                                                & 7.3672e05&\si{\pascal}          \\
+		\(n\)                     & Particle density                                               & 1.5327e20&\si{\per\meter\cubed} \\
+		\(B_0\)                   & Magnetic field at magnetic axis                                & 4.5744&\si{\tesla}              \\
+		\(\beta\)                 & Normalised plasma pressure                                     & 8.85 &\%                           \\
+		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & 1.1415&\si{\second}             \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\end{frame}
+\begin{frame}
+	\frametitle{Model sensitivity}
+	\begin{columns}
+		\column[c]{.5\textwidth}
+		\begin{centering}
+		\begin{beamercolorbox}[sep=1em,wd=8cm]{redbox}
+              $P_{\si{E}}$, $P_{\si{W}}$, $B_{\si{max}}$ and $\sigma_{\si{max}}$ are changed. Many output parameters were unaffected or changed linearly. But some interesting results were found.
+              \end{beamercolorbox}
+        \end{centering}
+        \column[c]{.5\textwidth}
+        \centering
+	    \includegraphics[width=\textwidth]{MatlabFigures/DesiredOutputPower/PlasmaBetaInTheCentre.eps}
+		
+		\includegraphics[width=\textwidth]{MatlabFigures/DesiredOutputPower/MagneticFieldAtMagneticAxis.eps}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Elliptic plasma-changes in model}
+	\begin{columns}
+		\column[c]{.5\textwidth}
+		\begin{beamercolorbox}[sep=1em,wd=8cm]{redbox}
+              Now the plasma is modeled as an ellipse.
+              The thickness of the blanket is not constant. Rather the outer and inner ellipses are kept as true ellipses.
+              \end{beamercolorbox}
+              \begin{align}
+                  V_{\si{I}}=2\,\pi^{2}\, R_{0}\,((a_{\min}+b+c)^{2}-a_{\min}^{2})\,\kappa
+              \end{align}
+              \begin{align}
+                  c=\frac{2\,\xi}{1-\xi}\,(\kappa\, a_{\min}+b)
+              \end{align}
 		\column[c]{.6\textwidth}
-		\includegraphics[width=\textwidth]{Figures/Subs.eps}\vspace{1cm}
-		\includegraphics[width=\textwidth]{Figures/Growth.eps}
+		\centering
+	    \includegraphics[width=\textwidth]{MatlabFigures/ShieldThickness/ShieldThickness.eps}
+		
+		
 	\end{columns}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Groove and rounding corners}
-	\begin{columns}
-		\column[c]{.8\textwidth}
-		\begin{description}[Wet Oxide Growth]
-			\item[Silicon Etch] 20\% KOH @ \SI{80}{\celsius} for \SI{3}{\hour} \SI{36}{\minute}: \SI{54.7}{\degree} \SI{310}{\micro\meter} groove
-			\item[BHF Oxide Etch] \SI{45}{\minute} @ \SI{70}{\nano\meter\per\minute}
-			\item[Cleaning] RCA clean
-			\item[Wet Oxide Growth] \SI{126}{\minute} @ \SI{1100}{\celsius}: \SI{1000}{\nano\meter}
-			\item[BHF Oxide Etch] \SI{15}{\minute} @ \SI{70}{\nano\meter\per\minute}
-		\end{description}
-		\column[c]{.7\textwidth}
-		\includegraphics[width=\textwidth]{Figures/KOH.eps}\vspace{1cm}
-		\includegraphics[width=\textwidth]{Figures/corner.png}
-	\end{columns}
+	\frametitle{Elliptical model output parameters}
+\begin{table}
+	\begin{tabular}{llr}
+		\toprule
+		Symbol                    & Quantity                                                       & Obtained values                  \\
+		\midrule
+		
+		\(c\)                     & Magnet coil thickness                                          & \SI{1.30}{\meter}\uparrow              \\
+		\(A_p\)                   & Plasma surface                                                 & \SI{1206}{\meter\squared} \uparrow   \\
+		\(V_p\)                   & Plasma volume                                                  & \SI{793}{\meter\cubed}  \uparrow    \\
+		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{2.48e06}{\watt\per\meter}\downarrow  \\
+		\(p\)                     & Plasma pressure                                                & \SI{5.20e05}{\pascal}  \downarrow        \\
+		\(n\)                     & Particle density                                               & \SI{1.08e20}{\per\meter\cubed}\downarrow \\
+		\(\beta\)                 & Normalised plasma pressure                                     & 6.17\%\downarrow                           \\
+		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.62}{\second}       \uparrow      \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Deposit and liftoff}
-	\begin{columns}
-		\column[c]{.8\textwidth}
-		\begin{description}[Aqua Regia Etch]
-			\item[Ti/Pt sputtering] \SI{39}{\watt\per\centi\meter\squared} at \SI{10}{\centi\meter}
-			\item[AlN sputtering] \SI{200}{\watt} @ \SI{20}{\celsius} with gas flow 20:20 N\(_2\) and Ar
-			\item[Ti sputtering] \SI{1.3}{\second}: \SI{10}{\nano\meter}
-			\item[Pt sputtering] \SI{5.9}{\second}: \SI{120}{\nano\meter}
-			\item[AlN sputtering] \SI{97.1}{\minute}: \SI{400}{\nano\meter}
-			\item[Pt sputtering] \SI{2.5}{\second}: \SI{50}{\nano\meter}
-			\item[Lithography] \SI{10}{\micro\meter} AZ 4562 positive resist
-			\item[Aqua Regia Etch] Pt: \SI{17}{\minute}. AlN: \SI{15.39}{\minute}. Ti: \SI{20}{\minute}. Total: \SI{52.39}{\minute}
-		\end{description}
-		\column[c]{.7\textwidth}
-		\includegraphics[width=\textwidth]{Figures/Deposit.eps}\vspace{0.6cm}
-		\includegraphics[width=\textwidth]{Figures/DepositMask.eps}\vspace{0.6cm}
-		\includegraphics[width=\textwidth]{Figures/Piezo.eps}
-	\end{columns}
+	\frametitle{DEMO output parameters with $P_{\si}=2GW$}
+\begin{table}
+	\begin{tabular}{llr}
+		\toprule
+		Symbol                    & Quantity                                                       & Obtained values                  \\
+		\midrule
+		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.20}{\meter}              \\
+		\(c\)                     & Magnet coil thickness                                          & \SI{1.30}{\meter}              \\
+		\(a\)                     & Minor radius                                                   & \SI{2.01}{\meter}              \\
+		\(R_0\)                   & Major radius                                                   & \SI{9.95}{\meter}  \uparrow            \\
+		\(A\)                     & Aspect ratio                                                   & 4.95       \uparrow                   \\
+		\(A_p\)                   & Plasma surface                                                 & \SI{2.41e03}{\meter\squared} \uparrow     \\
+		\(V_p\)                 & Plasma volume                                                  & \SI{1.59e03}{\meter\cubed} \uparrow      \\
+		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{2.48e06}{\watt\per\meter}  \\
+		\(p\)                     & Plasma pressure                                                & \SI{5.20e05}{\pascal}          \\
+		\(n\)                     & Particle density                                               & \SI{1.08e20}{\per\meter\cubed} \\
+		\(B_0\)                   & Magnetic field at magnetic axis                                & \SI{8.80}{\tesla}        \uparrow      \\
+		\(\beta\)                 & Normalised plasma pressure                                     & 1.69\%              \downarrow             \\
+		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.62}{\second}             \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{DEMO output parameters with $\kappa=2$ and $A=3$}
+\begin{table}
+	\begin{tabular}{llr}
+		\toprule
+		Symbol                    & Quantity                                                       & Obtained values                  \\
+		\midrule
+		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.20}{\meter}              \\
+		\(c\)                     & Magnet coil thickness                                          & \SI{1.30}{\meter}              \\
+		\(a\)                     & Minor radius                                                   & \SI{2.01}{\meter}              \\
+		\(R_0\)                   & Major radius                                                   & \SI{6.03}{\meter}    \downarrow          \\
+		\(A\)                     & Aspect ratio                                                   & 3       \downarrow                     \\
+		\(A_p\)                   & Plasma surface                                                 & \SI{1.46e03}{\meter\squared}    \downarrow  \\
+		\(V_p\)                   & Plasma volume                                                  & \SI{962}{\meter\cubed}    \downarrow    \\
+		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{4.01e06}{\watt\per\meter}  \uparrow\\
+		\(p\)                     & Plasma pressure                                                & \SI{6.68e05}{\pascal}    \uparrow      \\
+		\(n\)                     & Particle density                                               & \SI{1.39e20}{\per\meter\cubed}\uparrow \\
+		\(B_0\)                   & Magnetic field at magnetic axis                                & \SI{6.07}{\tesla}   \downarrow           \\
+		\(\beta\)                 & Normalised plasma pressure                                     & 4.55\%    \uparrow                       \\
+		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.26}{\second}     \downarrow        \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Beam Release and foiling}
-	\begin{columns}
-		\column[c]{.8\textwidth}
-		\begin{description}[Dry Silicon Etch]
-			\item[Lithography] \SI{5}{\micro\meter} AZ 4562 positive resist
-			\item[Dry Silicon Ethc] STS ICP Advanced Silicon Etcher system. Vertical etch at \SI{3000}{\nano\meter\per\minute} for silicon.
-			\item[Dicing] Disco DAD321. Electrostatic tape holds the wafer still. Removed with acetone.
-			\item[Foil] Minitech Machinery Corporation CNC milled Fe foil is glued to device.
-		\end{description}
-		\column[c]{.7\textwidth}
-		\includegraphics[width=\textwidth]{Figures/Cantirelease.eps}\vspace{1cm}
-		\includegraphics[width=\textwidth]{Figures/Device.eps}
-	\end{columns}
+	\frametitle{DEMO with $\kappa$ and $A$ as free parameters}
+\begin{centering}
+		\begin{beamercolorbox}[sep=1em,wd=8cm]{redbox}
+              We have chosen to optimise the engineering volume and $\beta$ using $\kappa$ and $A$ as free parameters. This yields optimum $R_{0}$ and $\kappa$
+              \end{beamercolorbox}
+        \end{centering}
+        \begin{align}
+            R_{0}=\sqrt{a^{3}/b}
+        \end{align}
+        \begin{align}
+            \kappa=\frac{6\, a_{\min}\,\xi-b\,\xi-6\, a_{\min}-b}{2\, a_{\min}\,\xi}
+        \end{align}
+\end{frame}
+\begin{frame}
+	\frametitle{DEMO output parameters with $\kappa$ and $A$ as free parameters}
+\begin{table}
+	\begin{tabular}{llr}
+		\toprule
+		Symbol                    & Quantity                                                       & Obtained values                  \\
+		\midrule
+		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.20}{\meter}              \\
+		\(c\)                     & Magnet coil thickness                                          & \SI{1.30}{\meter}              \\
+		\(a\)                     & Minor radius                                                   & \SI{2.01}{\meter}              \\
+		\(R_0\)                   & Major radius                                                   & \SI{2.60}{\meter}  \downarrow            \\
+		\(A\)                     & Aspect ratio                                                   & 1.29           \downarrow               \\
+		\(A_p\)                   & Plasma surface                                                 & \SI{630}{\meter\squared}    \\
+		\(V_p\)                   & Plasma volume                                                  & \SI{414}{\meter\cubed}    \downarrow  \\
+		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{9.49e06}{\watt\per\meter} \downarrow \\
+		\(p\)            \downarrow         & Plasma pressure                                                & \SI{1.02e05}{\pascal}          \\
+		\(n\)                     & Particle density                                               & \SI{2.12e20}{\per\meter\cubed} \downarrow\\
+		\(B_0\)                   & Magnetic field at magnetic axis                                & \SI{-3.09}{\tesla}    \downarrow          \\
+		\(\beta\)                 & Normalised plasma pressure                                     & 26.9\%     \uparrow                      \\
+		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.26}{\second}             \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 \end{frame}
 
+
+\section{Diagnostic Interferometer}
+\subsection{Diagnostic Interferometer}
+\begin{frame}{Cut off}
+\begin{align}
+    n_e < n_c &= \omega^2\frac{\epsilon_0\cdot m_{e0}}{e^2}
+\end{align}
+    \begin{align}
+  \omega^2\frac{\epsilon_0\cdot m_{e0}}{e^2} &= \omega^2\frac{\SI{8.854e-12}{\farad\per\meter}\SI{9.109e-31}{\kilo\gram}}{\SI{1.602e-19}{\coulomb}}\\
+  &\Downarrow\nonumber\\
+  n_e &< 0.000314\omega^2
+\end{align}
+At densities of \SI{e18}{\per\meter\cubed} the minimum frequency is:
+\begin{align}
+  \frac{\omega}{2\pi} &> \frac{\sqrt{\frac{\SI{e18}{\per\meter\cubed}}{0.000314}}}{2\pi}\\
+  &\Downarrow\nonumber\\
+  f &\approx \SI{9}{\giga\hertz}
+  \end{align}
+\end{frame}
+\begin{frame}{Four Sources}
+    \begin{columns}
+    \column{.6\textwidth}\\
+    At a density of \SI{e18}{\per\meter\cubed} the minimum frequency of the wave is:
+    \(f &\approx \SI{9}{\giga\hertz}\)\newline
+    \begin{itemize}
+        \item \SI{2.45}{\giga\hertz} (Transparent)
+        \item \SI{60}{\giga\hertz}
+        \item \SI{98}{\giga\hertz}
+        \item \SI{130}{\giga\hertz}
+    \end{itemize}
+    \column{.6\textwidth}
+    \includegraphics[width=\textwidth]{Figures/BeamProp.eps}
+    \end{columns}
+\end{frame}
+\begin{frame}{Phaseshifts}
+    \begin{table}
+	\begin{tabular}{lrr}
+		\toprule
+		Frequency \(\bqty{\si{\giga\hertz}}\) &  \multicolumn{2}{c}{Phase at\(\bqty{2\pi}\)} \\
+		& \(n_e=\SI{10e16}{\per\meter\cubed}\) & Phase at \(n_e=\SI{10e18}{\per\meter\cubed}\)\\
+		\midrule
+		2.45                     & 0.8620 & 86.17\\
+		60                     & 0.0352  & 3.519\\
+		98                    & 0.0215  & 2.154\\
+		130                   & 0.0162 & 1.624\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\end{frame}
+\begin{frame}{Gaussian Telescope}
+    \begin{columns}
+    \column{.6\textwidth}
+    Input parameters:\\
+    \(w_0\), \(freq\), \(d_0\), \(f_0\), \(f_1\)\\
+    \\
+    Output distances:\\
+    \(d_1 = 0.1619\), \(d_2 = 0.0881\), \(d_3 = 0.0563\)\\
+    \\
+    Output beamwaists:\\
+    \(w_1 = 0.0116\), \(w_2 = 0.0069\)\\
+    \\
+    Wavelenght: \(\lambda=0.005\)
+    \column{.7\textwidth}
+    \includegraphics[width=\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
+    \end{columns}
+\end{frame}
 \section*{Questions}
 \title{Questions}
 \subtitle{}
