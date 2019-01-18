@@ -8,10 +8,10 @@ w_0 = 0.0275; % Initial Beam Waist [m]
 r = 0.125; % Minor tokamak radius [m]
 freq = 60; % Frequency of probe beam [GHz]
 
-d_0 = 0.1; % Distance between source and first lens
-d_r = 0.015; % Distance between first lens and reactor wall
-f_0 = 0.2; % Focal length of first lens
-f_1 = 0.08; % Focal length of second lens
+d_0 = 0.20; % Distance between source and first lens
+d_r = 0.10; % Distance between first lens and reactor wall
+f_0 = 0.25; % Focal length of first lens
+f_1 = 0.20; % Focal length of second lens
 
 topstart = 2 * asin(r_p/(2 * r)) / 2;
 topend = (2 * pi - 2 * topstart) / 2;
@@ -85,19 +85,21 @@ d0Ann = axPos(1) + ((d_0 - xMinMax(1)) / (xMinMax(2) - xMinMax(1))) * axPos(3);
 d1Ann = axPos(1) + ((d_0 + d_1 - xMinMax(1)) / (xMinMax(2) - xMinMax(1))) * axPos(3);
 d2Ann = axPos(1) + ((d_0 + d_1 + d_2 - xMinMax(1)) / (xMinMax(2) - xMinMax(1))) * axPos(3);
 d3Ann = axPos(1) + ((d_0 + d_1 + d_2 + d_3 - xMinMax(1)) / (xMinMax(2) - xMinMax(1))) * axPos(3);
-yAnn = axPos(2) + ((-0.07 - yMinMax(1)) / (yMinMax(2) - yMinMax(1))) * axPos(4);
-annotation('doublearrow', [zAnn, d0Ann], [yAnn, yAnn]);
-annotation('doublearrow', [d0Ann, d1Ann], [yAnn, yAnn]);
-annotation('doublearrow', [d1Ann, d2Ann], [yAnn, yAnn]);
-annotation('doublearrow', [d2Ann, d3Ann], [yAnn, yAnn]);
-annotation('ellipse', [d0Ann - 0.01, yAnn + 0.05, 0.02, 0.2], 'FaceColor', 'cyan');
-annotation('ellipse', [d2Ann - 0.01, yAnn + 0.05, 0.02, 0.2], 'FaceColor', 'cyan');
-text(d_0/2, -0.09, 'd_0')
-text(d_0+(d_1 / 2), -0.09, 'd_1')
-text(d_0+d_1+(d_2 / 2), -0.09, 'd_2')
-text(d_0+d_1+d_2+(d_3 / 2), -0.09, 'd_3')
-text(d_0-0.07, 0.06, 'First Lens')
-text(d_0+d_1+d_2, 0.06, 'Second Lens')
+yAnn = axPos(2) + ((0 - yMinMax(1)) / (yMinMax(2) - yMinMax(1))) * axPos(4);
+annotation('doublearrow', [zAnn, d0Ann], [yAnn - 0.2, yAnn - 0.2]);
+annotation('doublearrow', [d0Ann, d1Ann], [yAnn - 0.2, yAnn - 0.2]);
+annotation('doublearrow', [d1Ann, d2Ann], [yAnn - 0.2, yAnn - 0.2]);
+annotation('doublearrow', [d2Ann, d3Ann], [yAnn - 0.2, yAnn - 0.2]);
+annotation('ellipse', [d0Ann - 0.01, yAnn - y_0(1000) * 1.5, 0.02, y_0(1000) * 3], 'FaceColor', 'cyan');
+annotation('ellipse', [d2Ann - 0.01, yAnn - y_0(1000) * 1.5, 0.02, y_0(1000) * 3], 'FaceColor', 'cyan');
+text(d_0/4, -0.22, sprintf('d_0 = %0.2f', d_0))
+text(d_0+(d_1 / 4), -0.22, sprintf('d_1 = %0.2f', d_1))
+text(d_0+d_1+(d_2 / 4), -0.22, sprintf('d_2 = %0.2f', d_2))
+text(d_0+d_1+d_2+(d_3 / 4), -0.22, sprintf('d_3 = %0.2f', d_3))
+text(d_0-0.06, 0.06, '1^{st} Lens')
+text(d_0-0.06, -0.06, sprintf('f_0 = %0.2f', f_0))
+text(d_0+d_1+d_2-0.06, 0.06, '2^{nd} Lens')
+text(d_0+d_1+d_2-0.06, -0.06, sprintf('f_1 = %0.2f', f_1))
 w1x = (d_0 + d_1);
 w1x = repelem(w1x, 100);
 w1y = linspace(0, w_1);
@@ -105,9 +107,9 @@ p4 = plot(w1x, w1y);
 %plot(w1x(1),w1y(100), 'Marker', '^', 'MarkerSize', 2, 'MarkerEdgeColor', 'green', 'MarkerFaceColor', 'green');
 %plot(w1x(1),w1y(1), 'Marker', 'V', 'MarkerSize', 2, 'MarkerEdgeColor', 'green', 'MarkerFaceColor', 'green');
 yline(0, '-');
-xlabel('Distance [m]');
+xlabel('Distance from source [m]');
 ylabel('Beam Waist [m]');
-title('Profile of Gaussian Beam Interferometer');
+title('Beam Waist In A Gaussian Beam Interferometer');
 axis equal
 top = linspace(topstart, topend, 100); % Creates 1000 datapoints between 0 and 4 pi
 x_t = d_0 + d_r + r + r * cos(top); % x-parameter of circle
