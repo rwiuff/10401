@@ -99,14 +99,14 @@ which can be parameterised as
 	\caption{The profile of the blanket-and-shield and the thickness as a function of the angle around origo, \(\phi\).}
 	\label{ShTh}
 \end{wrapfigure}
-Meanwhile the blanket must be implemented as an ellipse or swelled ellipse. The true ellipse results in a difference of thickness in the blanket while the second results in a blanket of equal thickness throughout the structure. To this the choice of implementing the blanket as a true ellipse has been made since it simplifies derivations a bit. Note however that keeping a constant thickness is the preferable option as it will reduce the engineering volume and hence the cost of the machine.\\
-The outher layer parameterised is
+Meanwhile the blanket must be implemented as an ellipse or swelled ellipse. The true ellipse results in a difference of thickness in the blanket while the second results in a blanket of equal thickness throughout the structure. To this, the choice of implementing the blanket as a true ellipse has been made, since it simplifies derivations a bit. Note however, that keeping a constant thickness is the preferable option as it will reduce the engineering volume and hence the cost of the machine.\\
+The outher layer is parameterised 
 \begin{align}
 	\mqty[x_2 \\y_2] &= \mqty[\pqty{b+a_{\min}}\cos{\phi}\\\kappa \pqty{b+a_{\min}}\sin{\phi}]
 	\label{eq:outer_ellipse}
 \end{align}
 with $b$ the blanket thickness at the minor ellipse axis. Choosing for now, $a_{\min}=2$, $\kappa=2$ and $b=1.2$, \ref{eq:inner_ellipse} and \ref{eq:outer_ellipse} are plotted on Figure \ref{ShTh} along with the variation in thickness of the blanket. \\
-Given \ref{eq:inner_ellipse} and \ref{eq:outer_ellipse} the engineering volume can easily be derived if $c\,\cos(\phi)$ and $\kappa\, c\,\sin(\phi)$ is added to the x and y-direction in \ref{eq:outer_ellipse} respectively, where $c$ is the minimum thickness of the magnetic coils that provide the torroidal field. \\
+Given \ref{eq:inner_ellipse} and \ref{eq:outer_ellipse}, the engineering volume can easily be derived if $c\,\cos(\phi)$ and $\kappa\, c\,\sin(\phi)$ is added to the x and y-direction in \ref{eq:outer_ellipse} respectively, where $c$ is the minimum thickness of the magnetic coils that provide the torroidal field. \\
 The cross sectional area of an ellipse is $A_{\si{e}}=\pi\, a_{\min}\, a_{\max}$ so the engineered volume becomes
 \begin{align}
 	V_{\si{I}}=2\,\pi\, R_{0}\,(A_{\si{e,outer}}-A_{\si{e,inner}})=2\,\pi^{2}\, R_{0}\,\left(\left(a_{\min}+b+c\right)^{2}-a_{\min}^{2}\right)\,\kappa
@@ -116,11 +116,11 @@ and the plasma volume is similarly calculated as $V_{si{p}}=2\,\pi^2\, R_{0}\, a
 \begin{align}
 	S_{\si{p}}=2\,\pi\, R_{0}\, C_{\s{p}}=2\,\pi\, R_{0}\, 4\, a_{\min}\,\int_{0}^{2\,\pi}\sqrt{1-(1-\kappa^{-2})^{1/2}\sin^{2}{\phi}} \, d\si{\phi}
 \end{align}
-where the integral can be approximated after choosing $\kappa$. Thus our choice of $\kappa$ yields $S_{\si{p}}\approx 8\,\pi\, R_{0}\,a_{\min}\cross 4.8$. The rest of the parameters in the code except $c$ is approximated to be unchanged. Now c is also approximated, or rather overestimated using a slight change to eq. (5.24) in the textbook. The change is that since the force grows with $a_{\min}$ inserting $\kappa\, a_{\min}$ instead yields an overestimation on the vertical force on the magnet. The tensile forces are the same, so the force balance leads to
+where the integral can be approximated after choosing $\kappa$. Thus for our choice of $\kappa$ $S_{\si{p}}\approx 8\,\pi\, R_{0}\,a_{\min}\cross 4.8$. Using the same arguments as in the book, the B-field in the centre is surprisingly unchanged when going to the elliptical model. Now c is also approximated, or rather overestimated using a slight change to eq. (5.24) in the textbook. The change is that since the force grows with $a_{\min}$ inserting $\kappa\, a_{\min}$ instead yields an overestimation on the vertical force on the magnet. The tensile forces are the same, so the force balance leads to
 \begin{align}
 	c=\frac{2\,\xi}{1-\xi}(\kappa\, a+b)
 \end{align}
-with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new parameter equations are inserted in the code. The parameters that changed significantly are displayed in \ref{tab:ellip_output}. The most dramatic change is the plasma volume and surface area which increased by a factor of around 2 and 3 respectively, this makes sence as the plasma was made twice as high. The coil thickness was also changed significantly due to the overestimation while the rest of the parameters did not change much. This most likely means that the model needs more work to make the approximations more precise.
+with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new parameter equations are inserted in the code. The parameters that changed significantly are displayed in \ref{tab:ellip_output}. The most dramatic change is the plasma volume and surface area which increased by a factor of around 2 and 3 respectively, this makes sense as the plasma was made twice as high. The coil thickness was also changed significantly due to the overestimation while the rest of the parameters did not change much. 
 
 \begin{table}
 	\begin{tabular}{llr}
