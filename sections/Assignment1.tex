@@ -59,22 +59,7 @@ The variable parameters are the electric power \(P_E\), the maximum wall loading
 \cref{IterateTokamakDTU} includes the code for iterating the matlab model over various paremeters.
 \subsubsection{Change in desired power output.}
 For the rise in megawatts produced (\SIrange{500}{1000}{\mega\watt}) there are a linear rise in aspect ratio, major radius, plasma surface and plasma volume. The rest of the parameters where constant except for the magnetic field strenght at the magnetic axis and the normalised plasma pressure. These are shown in \cref{PE}.
-\begin{figure}
-	\centering
-	\begin{subfigure}[b]{.45\textwidth}
-		\includegraphics[width=\textwidth]{MatlabFigures/DesiredOutputPower/PlasmaBetaInTheCentre.eps}
-		\caption{}
-		\label{PEbeta}
-	\end{subfigure}
-	~
-	\begin{subfigure}[b]{.45\textwidth}
-		\includegraphics[width=\textwidth]{MatlabFigures/DesiredOutputPower/MagneticFieldAtMagneticAxis.eps}
-		\caption{}
-		\label{PEmagnet}
-	\end{subfigure}
-	\caption{The evolution of the normalised plasma pressure (\cref{PEbeta}) and the magnetic field strenght (\cref{PEmagnet}) when changing the desired power output.}
-	\label{PE}
-\end{figure}
+
 % \subsubsection{\(P_W\) \SIrange{0}{10}{\mega\watt\per\meter\squared}}
 % \subsubsection{\(B_{\max}\) \SIrange{0}{20}{\tesla}}
 % \subsubsection{\(\sigma_{\max}\) \SIrange{2000}{5000}{\atm}}
@@ -112,86 +97,93 @@ The cross sectional area of an ellipse is $A_{\si{e}}=\pi\, a_{\min}\, a_{\max}$
 	V_{\si{I}}=2\,\pi\, R_{0}\,(A_{\si{e,outer}}-A_{\si{e,inner}})=2\,\pi^{2}\, R_{0}\,\left(\left(a_{\min}+b+c\right)^{2}-a_{\min}^{2}\right)\,\kappa
 	\label{eq:engineered_volume}
 \end{align}
-and the plasma volume is similarly calculated as $V_{si{p}}=2\,\pi^2\, R_{0}\, a_{\min}\, a_{\max}$. The plasma surface area is a bit more tricky but the result is
+and the plasma volume is similarly calculated as $V_{\si{P}}=2\,\pi^2\, R_{0}\,\kappa\, a_{\min}^{2}$. The plasma surface area is a bit more tricky, but it can be approximated as
 \begin{align}
-	S_{\si{p}}=2\,\pi\, R_{0}\, C_{\s{p}}=2\,\pi\, R_{0}\, 4\, a_{\min}\,\int_{0}^{2\,\pi}\sqrt{1-(1-\kappa^{-2})^{1/2}\sin^{2}{\phi}} \, d\si{\phi}
+	S_{\si{p}}=2\,\pi\, R_{0}\,\pi\,(3\,(a_{\min}+\kappa\, a_{\min})-\sqrt{(3\, a_{\min}+\kappa\, a_{\min})\,(a_{\min}+3\,\kappa\, a_{\min})})
 \end{align}
-where the integral can be approximated after choosing $\kappa$. Thus for our choice of $\kappa$ $S_{\si{p}}\approx 8\,\pi\, R_{0}\,a_{\min}\cross 4.8$. Using the same arguments as in the book, the B-field in the centre is surprisingly unchanged when going to the elliptical model. Now c is also approximated, or rather overestimated using a slight change to eq. (5.24) in the textbook. The change is that since the force grows with $a_{\min}$ inserting $\kappa\, a_{\min}$ instead yields an overestimation on the vertical force on the magnet. The tensile forces are the same, so the force balance leads to
+Using the same arguments as in the book, the B-field in the centre is surprisingly unchanged when going to the elliptical model. Now c is also approximated, or rather overestimated using a slight change to eq. (5.24) in the textbook. Since the force grows with $a_{\min}$ inserting $\kappa\, a_{\min}$ instead yields an overestimation on the vertical force on the magnet. The tensile forces are the same, so the force balance leads to
 \begin{align}
 	c=\frac{2\,\xi}{1-\xi}(\kappa\, a+b)
 \end{align}
-with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new parameter equations are inserted in the code. The parameters that changed significantly are displayed in \ref{tab:ellip_output}. The most dramatic change is the plasma volume and surface area which increased by a factor of around 2 and 3 respectively, this makes sense as the plasma was made twice as high. The coil thickness was also changed significantly due to the overestimation while the rest of the parameters did not change much. 
+with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new equations are inserted in the code. The results are displayed in \ref{tab:ellip_output}. The plasma volume and surface area is of course increased as the plasma was made higher. This of course also results in a decreased power density. Overall, parameters such as $B_{0}$, $\beta$ and $\tau_{\si{E_{\min}}}$ while changing a bit, they were not changed significantly. 
 
 \begin{table}
 	\begin{tabular}{llr}
 		\toprule
-		Symbol                    & Quantity                                                       & Obtained values                \\
+		Symbol                    & Quantity                                                       & Obtained values                  \\
 		\midrule
-
-		\(c\)                     & Magnet coil thickness                                          & \SI{1.30}{\meter}              \\
-		\(A_p\)                   & Plasma surface                                                 & \SI{1206}{\meter\squared}      \\
-		\(V_p\)                   & Plasma volume                                                  & \SI{793}{\meter\cubed}         \\
-		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{2.48e06}{\watt\per\meter}  \\
-		\(p\)                     & Plasma pressure                                                & \SI{5.20e05}{\pascal}          \\
-		\(n\)                     & Particle density                                               & \SI{1.08e20}{\per\meter\cubed} \\
-		\(\beta\)                 & Normalised plasma pressure                                     & 6.17\%                         \\
-		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.62}{\second}             \\
+		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.2037}{\meter}              \\
+		\(c\)                     & Magnet coil thickness                                          & \SI{1.2992}{\meter}              \\
+		\(a\)                     & Minor radius                                                   & \SI{2.0098}{\meter}              \\
+		\(R_0\)                   & Major radius                                                   & \SI{4.9583}{\meter}              \\
+		\(A\)                     & Aspect ratio                                                   & 2.4670                           \\
+		\(A_p\)                   & Plasma surface                                                 & \SI{608.7415}{\meter\squared}    \\
+		\(V_p\)                   & Plasma volume                                                  & \SI{793.4534}{\meter\cubed}      \\
+		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{2.4756e06}{\watt\per\meter}  \\
+		\(p\)                     & Plasma pressure                                                & \SI{5.2003e05}{\pascal}          \\
+		\(n\)                     & Particle density                                               & \SI{1.0819e20}{\per\meter\cubed} \\
+		\(B_0\)                   & Magnetic field at magnetic axis                                & \SI{4.6037}{\tesla}              \\
+		\(\beta\)                 & Normalised plasma pressure                                     & 6.17\%                           \\
+		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.6172}{\second}             \\
 		\bottomrule
 	\end{tabular}
-	\caption{Output quantities from the elliptical model}
+		\caption{Output quantities from the elliptical model}
 	\label{tab:ellip_output}
 \end{table}
 
+
+
+
 \subsection{Main parameters for DEMO}
 
-Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters seen in table \ref{tab:DEMO}. Since $R_{0}$ is directly proportional to the electric power this of course increases linearly. The other geometric output parameters regarding areas and volumes  therefore also increases. $\beta$ has decreased a lot, so the plasma is not confined effectively in DEMO.
+Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters seen in table \ref{tab:DEMO}. Since $R_{0}$ is directly proportional to the electric power this of course increases linearly. The other geometric output parameters regarding areas and volumes also increase as a result. $\beta$ has decreased a lot, so the plasma is not confined effectively in DEMO.
 
 \begin{table}
 	\begin{tabular}{llr}
 		\toprule
 		Symbol                    & Quantity                                                       & Obtained values                \\
 		\midrule
-		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.20}{\meter}              \\
-		\(c\)                     & Magnet coil thickness                                          & \SI{1.30}{\meter}              \\
-		\(a\)                     & Minor radius                                                   & \SI{2.01}{\meter}              \\
-		\(R_0\)                   & Major radius                                                   & \SI{9.95}{\meter}              \\
-		\(A\)                     & Aspect ratio                                                   & 4.95                           \\
-		\(A_p\)                   & Plasma surface                                                 & \SI{2.41e03}{\meter\squared}   \\
-		\(V_p\)                   & Plasma volume                                                  & \SI{1.59e03}{\meter\cubed}     \\
-		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{2.48e06}{\watt\per\meter}  \\
-		\(p\)                     & Plasma pressure                                                & \SI{5.20e05}{\pascal}          \\
-		\(n\)                     & Particle density                                               & \SI{1.08e20}{\per\meter\cubed} \\
-		\(B_0\)                   & Magnetic field at magnetic axis                                & \SI{8.80}{\tesla}              \\
+		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.2037}{\meter}              \\
+		\(c\)                     & Magnet coil thickness                                          & \SI{1.2992}{\meter}              \\
+		\(a\)                     & Minor radius                                                   & \SI{2.0098}{\meter}              \\
+		\(R_0\)                   & Major radius                                                   & \SI{9.9510}{\meter}              \\
+		\(A\)                     & Aspect ratio                                                   & 4.9512                           \\
+		\(A_p\)                   & Plasma surface                                                 & \SI{1.21175e03}{\meter\squared}   \\
+		\(V_p\)                   & Plasma volume                                                  & \SI{1.5869e03}{\meter\cubed}     \\
+		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{2.4756e06}{\watt\per\meter}  \\
+		\(p\)                     & Plasma pressure                                                & \SI{5.2003e05}{\pascal}          \\
+		\(n\)                     & Particle density                                               & \SI{1.0819e20}{\per\meter\cubed} \\
+		\(B_0\)                   & Magnetic field at magnetic axis                                & \SI{8.8018}{\tesla}              \\
 		\(\beta\)                 & Normalised plasma pressure                                     & 1.69\%                         \\
-		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.62}{\second}             \\
+		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.6172}{\second}             \\
 		\bottomrule
 	\end{tabular}
-	\caption{Output quantities for DEMO using the elliptical model with $P_{si{E}}=2$}
+	\caption{Output quantities for DEMO using the elliptical model with $P_{\si{E}}=2\si{GW}$}
 	\label{tab:DEMO}
 \end{table}
 
 \subsection{Designs for DEMO}
 
-With $\kappa=2$ and $A=R_{0}/a_{\min}=3\Leftrightarrow R_{0}=3\, a_{\min}$ $A$ is changed from 4.95 to 3 when going from Friedberg's model to this model. Meanwhile these changes yields the parameters seen in table \ref{tab:DEMO2}. Besides the obvious geometric changes which has decreased due to decreasing $R_{0}$. The pressure has increased while the magnetic field has decreased. Therefor a better confinement is achieved since this increases $\beta$. This is a positive, and decreasing the aspect ratio a bit is therefore recommended. Additional time could be spend on optimising this, but we are unfortunately unable to do so due to time and space restrictions.
+With $P_{\si{E}}$, $\kappa=2$ and $A=R_{0}/a_{\min}=3\Leftrightarrow R_{0}=3\, a_{\min}$. This is implemented in the code and the results are displayed in \ref{tab:DEMO2}. $\beta$ has increased a bit but only to $4.55\%$. $R_{0}$ has been forced down, so the plasma volume etc. has decreased as well. Overall it seems like a smaller $R_{0}$ while keeping $a_{min}$ fixed is an improvement. Or in other words, $A=3$ is more desirable than $A\approx 5$. 
 
 \begin{table}
 	\begin{tabular}{llr}
 		\toprule
 		Symbol                    & Quantity                                                       & Obtained values                \\
 		\midrule
-		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.20}{\meter}              \\
-		\(c\)                     & Magnet coil thickness                                          & \SI{1.30}{\meter}              \\
-		\(a\)                     & Minor radius                                                   & \SI{2.01}{\meter}              \\
-		\(R_0\)                   & Major radius                                                   & \SI{6.03}{\meter}              \\
+		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.2037}{\meter}              \\
+		\(c\)                     & Magnet coil thickness                                          & \SI{1.2992}{\meter}              \\
+		\(a\)                     & Minor radius                                                   & \SI{2.0098}{\meter}              \\
+		\(R_0\)                   & Major radius                                                   & \SI{6.0295}{\meter}              \\
 		\(A\)                     & Aspect ratio                                                   & 3                              \\
-		\(A_p\)                   & Plasma surface                                                 & \SI{1.46e03}{\meter\squared}   \\
-		\(V_p\)                   & Plasma volume                                                  & \SI{962}{\meter\cubed}         \\
-		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{4.01e06}{\watt\per\meter}  \\
-		\(p\)                     & Plasma pressure                                                & \SI{6.68e05}{\pascal}          \\
-		\(n\)                     & Particle density                                               & \SI{1.39e20}{\per\meter\cubed} \\
-		\(B_0\)                   & Magnetic field at magnetic axis                                & \SI{6.07}{\tesla}              \\
+		\(A_p\)                   & Plasma surface                                                 & \SI{737.6961}{\meter\squared}   \\
+		\(V_p\)                   & Plasma volume                                                  & \SI{961.5370}{\meter\cubed}         \\
+		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{4.0857e06}{\watt\per\meter}  \\
+		\(p\)                     & Plasma pressure                                                & \SI{6.6807e05}{\pascal}          \\
+		\(n\)                     & Particle density                                               & \SI{1.3899e20}{\per\meter\cubed} \\
+		\(B_0\)                   & Magnetic field at magnetic axis                                & \SI{6.0714}{\tesla}              \\
 		\(\beta\)                 & Normalised plasma pressure                                     & 4.55\%                         \\
-		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.26}{\second}             \\
+		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.2588}{\second}             \\
 		\bottomrule
 	\end{tabular}
 	\caption{Output quantities for DEMO using the elliptical model with $P_{si{E}}=2$, $\kappa=2$ and setting $A=3$}
@@ -200,21 +192,47 @@ With $\kappa=2$ and $A=R_{0}/a_{\min}=3\Leftrightarrow R_{0}=3\, a_{\min}$ $A$ i
 
 \subsection{\textit{A} and \mathinhead{\kappa}{\kappa} as free parameters}
 
-For this assignment we have chosen to try and optimise $\beta$ and $V_{\si{I}}$ with $A$ and $\kappa$ as free parameters. $\beta$ is optimised first. The magnetic field in the centre was approximated as
+Designing the tokamak with $\kappa$ and $A$ as free parameters has led us to try and maximise profitability from $V_{P}/A_{P}$ and $\beta$. Profitability in this context means that increasing the size of the tokamak leads to an increase in these parameters. However, there is a point when the change vs increase in size becomes constant. This means that we do not profit from increasing the size any longer. \\
+$V_{\si{P}}$ and $A_{\si{P}}$ were calculated earlier so
 \begin{align}
-	B_{0}=\frac{R_{0}-a-b}{R_{0}}\,B_{\max}=(1-\frac{1}{A}-\frac{A\, b}{a_{\min}})\, B_{\max}
+    \frac{V_{\si{P}}}{A_{\si{P}}}=\frac{2\,\pi\, R_{0}\,\kappa\, a_{\min}^{2}}{2\,\pi\, R_{0}\,\pi\, (3\,(a+\kappa\, a_{min})-\sqrt{(3\, a_{\min}+\kappa\, a_{\min})\,(a+3\,\kappa\, a_{\min})})}=\frac{\kappa\, a_{\min}}{\pi\,(3+3\,\kappa-\sqrt{3+\kappa}\,\sqrt{1+3\,\kappa})}
 \end{align}
-this yields
+The expression scales linearly with $a_{min}$ so we set it equal to $1\si{m}$ since it has no effect on the choice of $\kappa$. Differentiating with respect to $\kappa$ and plotting is done, with the results shown in Figure \ref{kappa_change}. Considering the figure, $\kappa=2.5$ is chosen as the change is close enough to zero given this value.\\
+Now work will be done towards choosing a value for $A$. First for geometric reasons a minimum $R_{0}$ is calculated. It is simply $R_{0}=a_{\min}+b+c$ where $a_{min}$ is to be determined, $b=1.2\si{m}$ and $c=\frac{2\,\xi}{1-\xi}(\kappa\, a_{\min}+b)$. Meanwhile $A$ is chosen to optimize $\beta$. Inserting $R_{0}$ into $B_{0}$ in the textbook yields
 \begin{align}
-	\beta=\frac{2\, p\mu_{0}}{(1-\frac{1}{A}-\frac{A\, b}{a_{\min}})^{2}}
+    B_{0}=\frac{2\,\xi\,(\kappa\, a_{\min}+b)\, B_{max}}{((2\,\kappa-1)\, a_{\min}+a+b)}=\frac{178.75\, a_{\min}+85.8}{55.5+36\, a_{\min}}
 \end{align}
-Differentiating with respect to $A$, setting the expression equal to zero and solving for $A$ yields $A=\sqrt{a/b}=R_{0}/a_{\min}\Leftrightarrow R_{0}=\sqrt{a^{3}/b}$. Meanwhile inserting this expression into eq.
-\ref{eq:engineered_volume}, substituting $a_{min}=a_{\max}/\kappa$,
-differentiating with respect to $\kappa$, setting the expression equal to zero and solving yields $a_{\max}=-(b+c)\,\kappa/6$ so $a_{\min}=-(b+c)/6$. Next Freidberg's expression for $c$ is inserted and we solve for $\kappa$ which yields
+Where units has been disregarded and $\xi=0.11$, $b=1.2$, $\kappa=2.5$ and $B_{\si{max}}=13$ has been inserted. Meanwhile, inserting the textbook's expression for $P_{\si{dens}}$ into the expression for $p$ and inserting the input parameters yields
 \begin{align}
-	\kappa=\frac{6\, a_{\min}\,\xi-b\,\xi-6\, a_{\min}-b}{2\,a_{\min}\,\xi}
+    p=1.042\si{E}6\,\sqrt{\frac{1}{\kappa\, a_{\min}}}
 \end{align}
-$\kappa$ must of course be positive(as must the expression for $a_{\min}$) so it really must be the size of this expression that is calculated. This is inserted into the code yielding the output parameters seen in table \ref{tab:DEMO3}. While an extremely large $\beta$ and a very small engineered volume is achieved, there is most likely other problems with this design.
+Thus $\beta$ becomes
+\begin{align}
+    \beta=\frac{2148\,(a_{\min}+1.542)^{2}}{\sqrt{a_{\min}}\,(178.8\, a_{\min}+85.8)^{2}}
+\end{align}
+This function is plotted in Figure \ref{beta_vs_a} and for $\beta=10\‰$ $a=1.938\si{m}$ is achieved. Therefore $R_{0}=1.9378\si{m}+1.2\si{m}+2\cdot 0.11/(1-0.11)\cdot 2.5\cdot 1.938\si{m}+1.2\si{m}=4.632\si{m}$ which means $A=4.632\si{m}/1.938\si{m}=2.390$
+
+
+
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[h!]{.40\textwidth}
+		\includegraphics[width=\textwidth]{Figures/kappa_change.png}
+		\caption{}
+		\label{kappa_change}
+	\end{subfigure}
+	~
+	\begin{subfigure}[h!]{.40\textwidth}
+		\includegraphics[width=\textwidth]{Figures/beta_vs_a.png}
+		\caption{}
+		\label{beta_vs_a}
+	\end{subfigure}
+	\caption{}
+	\label{A_kappa}
+\end{figure}
+
 \begin{table}
 	\begin{tabular}{llr}
 		\toprule
