@@ -1,7 +1,8 @@
 % !TEX root = ../Main.tex
-When operating a fusion reactor a continous process of diagnostics are necessary in order to optimise the plasma for the fusion process. One of the active diagnostic methods are interferometry.
-The goal here is to measure the plasma electron density in the Danish Tokamak Undertaking reactor.
-Using a interferometer one can measure the electron density \(n_e\) of the plasma. The refractive index of electromagnetic waves depend on the electron density and plasma frequency \(\omega_p\) as such:
+When operating a fusion reactor a continous process of diagnostics is necessary in order to optimise the plasma for the fusion process. One of the active diagnostic methods are interferometry.
+The goal here for this part of the paper is to measure the plasma electron density in the Danish Tokamak Undertaking reactor.
+\subsection{Cutt-off and Source frequency}
+Using a interferometer one can measure the electron density \(n_e\) of the plasma. The refractive index of electromagnetic waves depend on the electron density and plasma frequency \(\omega_p\) proportionally:
 \begin{align}
 	\omega_p^2 \propto n_e
 \end{align}
@@ -14,7 +15,7 @@ The plasma will reflect the beam if the plasma frequency is larger than the beam
 \begin{align}
 	\omega > \omega_p = \sqrt{n_e\frac{e^2}{\epsilon_0 m_{e0}}}
 \end{align}
-Therefore the critical electron density becomes
+So for a given frequency, the plasma must not exceed a critical cut off electron density:
 \begin{align}
 	n_e < n_c      & = \omega^2\frac{\epsilon_0\cdot m_{e0}}{e^2} \label{nenc} \\
 	               & \qq*{which gives} \nonumber                               \\
@@ -30,7 +31,7 @@ With sufficient accuracy, the linear dependence of the O-mode refractive index o
 \end{align}
 We must calculate the phase shift as one beam travels in vacuum by the length \(L_V\) and one wave travels in the plasma by the length \(L_P\). The phase shift in terms of \(2 \pi\) is equal to the optical difference divided by the wavelength. With the refractive index in vacuum, \(N_V=1\), this yields:
 \begin{align}
-	\frac{\Phi}{2\pi} & = \frac{\Delta L_{opt}}{\lambda} = \frac{\int_{x_1}^{x_2}\pqty{N_V-N_{\mathrm{O}}(x')}\dd{x'}}{\lambda} \approx \frac{1}{2\lambda n_c}\int_{0}^{x}n_e(x')\dd{x'} \\
+	\frac{\Phi}{2\pi} & = \frac{\Delta L_{opt}}{\lambda} = \frac{\int_{x_1}^{x_2}\pqty{N_V-N_{\mathrm{O}}(x')}\dd{x'}}{\lambda} \approx \frac{1}{2\lambda n_c}\int_{0}^{x}n_e(x')\dd{x'} \nonumber \\
 	                  & = 4.48\times 10^{-16} \pqty{\frac{\lambda}{\si{\meter}}}\int_{0}^{x}\pqty{\frac{n_e(x')}{\si{\per\meter\cubed}}}\pqty{\frac{\dd{x'}}{\si{\meter}}}
 \end{align}
 Assuming a Gaussian distribution, the electron density at \(\pm\infty\) is approximately equal to the densities just inside the reactor walls. Therefore
@@ -43,8 +44,8 @@ With the density at the centre given as:
 \end{align}
 The \(c\) in \cref{c} is the width of the Gaussian distribution and must fit inside the reactor. The DTU tokamak has a minor diameter of \SI{0.25}{\meter}. Thus
 \begin{align}
-	\frac{\Phi(x)}{2\pi} \approx 4.48\times 10^{-16}\pqty{\frac{\lambda}{\si{\meter}}}\SI{0.25}{\meter}n_e & = 1.12\times 10^{-16}\ n_e \pqty{\frac{2\pi\ \SI{0.25}{\meter}}{\omega\si{\meter}}} \\
-	                                                                                                       & = 1.12\times 10^{-16}\ n_e\pqty{\frac{2\pi\SI{3e8}{\per\second}}{\omega}}           \\
+	\frac{\Phi(x)}{2\pi} \approx 4.48\times 10^{-16}\pqty{\frac{\lambda}{\si{\meter}}}\SI{0.25}{\meter}n_e & = 1.12\times 10^{-16}\ n_e  \pqty{\frac{2\pi\ \SI{0.25}{\meter}}{\omega\si{\meter}}} \nonumber \\
+	                                                                                                       & = 1.12\times 10^{-16}\ n_e\pqty{\frac{2\pi\SI{3e8}{\per\second}}{\omega}} \nonumber            \\
 	                                                                                                       & = 2.1112\times 10^{-7}\pqty{\frac{n_e}{\omega\si{\second}}}
 \end{align}
 Remembering \cref{nenc}
@@ -60,15 +61,83 @@ Since the cutoff is given by \cref{co} and since we want to measure densities up
 	                    & \Downarrow\nonumber                                               \\
 	f                   & \approx \SI{9}{\giga\hertz}
 \end{align}
-Given the available emitters, the best emitter is therefore the one with $f=60\si{GHz}$.
-
+Given the available emitters, the best emitter is therefore the one with \(f=60\si{GHz}\).
+\subsection{Beam Phaseshifts}
+The goal of the interferometer is to find the phaseshift between the microwave beam in vacuum and in plasma. Our suggestion is a setup involving a interferometer emitting a beam through the center of the reactor. The first measurement would be through vacuum to find the source phase. Afterwards phase measurements can be conducted with an active plasma in the reactor.
+So by first measuring the phase of the probing beam in vacuum, one can simply measure the phase shift and find the density according to \todo[inline]{Write results and finish this}
 \subsection{Evolving beam width}
-
-\subsection{Gauss telescope arrangement}
-From chapter 5 in ``Fusion Plasma Diagnostics with mm-Waves''\cite{PlasmaDiagnosis} the authors argue that a Gauss telescope arrangement can alter the beam waist independently of wavelength. This motivates narrowing the interferometer beam waist with a lense system.
+\begin{wrapfigure}[14]{r}{.4\textwidth}
+	\vspace{-5mm}
+	\includegraphics[width=.4\textwidth]{Figures/PropEx.eps}
+	\caption{Sketch of Gaussian beam propagation with indication of \(w_0\) and \(w(z)\).}
+	\label{PropEx}
+\end{wrapfigure}
+In our case we want to use a Gaussian microwave. Such beam propagates spatially as shown in \cref{PropEx}.
+\(w_0\) is the beam initial beam waist determined by the source and \(w(z)\) is the functino describing the waist. This equation is:
+\begin{align}
+	w(z) = w_0(z)\sqrt{1+\pqty{\frac{\lambda z}{\pi w_0^2}}^2}\label{wz}
+\end{align}
+From this equation one can track the spatial propagation of the wave. In this project three sources are given. The initial beam waist is set to \(w_0=\si{0.0275}{\meter}\) corresponding with half a reactor port. With
+\begin{align}
+	\frac{\lambda z}{\pi w_0^2} = \frac{9.542690316\times10^7 z}{w_0^2 f}
+\end{align}
+, and \(f\) being the frequency, the sources' beam waists are given as such:
+\begin{align}
+	\qq*{\SI{60}{\giga\hertz}}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 60\times10^9}}^2}\label{60}   \\
+	\qq*{\SI{98}{\giga\hertz}}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 98\times10^9}}^2}\label{98}   \\
+	\qq*{\SI{130}{\giga\hertz}} & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 130\times10^9}}^2}\label{130}
+\end{align}
+For the three given sources in this project, the beam waist has been plotted on \cref{BeamProp}.
 \begin{figure}
-    \centering
-    \includegraphics[width=.9\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
-    \caption{Awesome Gaussian Telescope}
-    \label{AWESOME}
+	\centering
+	\includegraphics[width=.4\textwidth]{Figures/BeamProp.eps}
+	\caption{Beam Waist for the three microwave sources. The functions are \cref{60,98,,130}}
+	\label{BeamProp}
 \end{figure}
+It is undesireable for some of the beam to not reach the output port and instead propagate into the reactor wall, as this will result in a lesser signal strength. Therefore it can be nesessary to deploy a gaussian telescope.
+\subsection{Gaussian beam telescope interferometer}
+In order to control the beam waist, one can use a Gaussian beam telescope arrangement around the reactor. A lens is placed between the source and the reactor input port and again between the output port and the reciever. From chapter 5 in ``Fusion Plasma Diagnostics with mm-Waves''\cite{PlasmaDiagnosis} the authors explains how such an arrangement can be obtained. Starting with the focal lengths of the lenses,
+\begin{align}
+	d = f_0 + f_1
+\end{align}
+, where \(f_0\) and \(f_1\) are focal lengths, and \(d\) are the distance between the lenses.
+The resulting narrowest beam waist after the second lens are given as:
+\begin{align}
+	w_2 = \frac{f_1}{f_0}w_0
+\end{align}
+This making the transformation wavelength independent\cite[Eq 5.118]{PlasmaDiagnosis}.
+The distance to this waist is given as:
+\begin{align}
+	d_3 = \frac{f_1}{f_0}\pqty{f_0+f_1-\frac{f_1}{f_0}d_0}
+\end{align}
+The waist in between the lenses is given as:
+\begin{align}
+	w_1 = \frac{\lambda f_0}{\pi w_0}
+\end{align}
+And the distance from the first lens to this waist is:
+\begin{align}
+	d_1 = \pqty{\frac{\frac{d_0}{f_0}-1}{\frac{w_0^2\pi}{f_0\lambda}+\pqty{\frac{d_0}{f_0}-1}^2}+1}f_0
+\end{align}
+Thus the distance from \(w_1\) to the second lens is:
+\begin{align}
+	d_2 = d-d_1
+\end{align}
+Knowing these variables and utilising \cref{wz} we can model a complete setup. Using the matlab code in \cref{inter}, the following parameters were input:
+\begin{align}
+	\mqty{r_p = \SI{0.055}{\meter} & r = \SI{0.125}{\meter}  & w_0 = \SI{0.0275}{\meter} & freq = \SI{60}{\giga\hertz}        \\
+	d_0 = \SI{0.20}{\meter}        & d_r = \SI{0.10}{\meter} & f_0 = \SI{0.25}{\meter}   & \SI{0.20}{\meter}} \label{interin}
+\end{align}
+With \(r_p\) being the tokamak port radius, \(r\) the tokamak minor radius and \(d_r\) the distance between the first lens and the reactor wall.
+The script gave the results:
+\begin{align}
+	\mqty{w_1 = \SI{0.0145}{\meter} & w_2 = \SI{0.0220}{\meter}                                            \\
+	d_1 = \SI{0.2243}{\meter}       & d_2 = \SI{0.2257}{\meter} & d_3 = \SI{0.232}{\meter}}\label{interou}
+\end{align}
+Furtermore it plots a sketch of the desired interferometer setup. The sketch can be seen in \cref{AWESOME}.
+\begin{figure}
+	\centering
+	\includegraphics[width=.7\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
+	\caption{Gaussian beam telecsope interferometer setup with input parameters shown in \cref{interin} and output parameters shown in \cref{interou}}
+	\label{AWESOME}
+\end{figure}
+\todo[inline]{Write section about interferometer considerations}
