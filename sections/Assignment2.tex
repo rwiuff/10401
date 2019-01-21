@@ -32,7 +32,7 @@ With sufficient accuracy, the linear dependence of the O-mode refractive index o
 We must calculate the phase shift as one beam travels in vacuum by the length \(L_V\) and one wave travels in the plasma by the length \(L_P\). The phase shift in terms of \(2 \pi\) is equal to the optical difference divided by the wavelength. With the refractive index in vacuum, \(N_V=1\), this yields:
 \begin{align}
 	\frac{\Phi}{2\pi} & = \frac{\Delta L_{opt}}{\lambda} = \frac{\int_{x_1}^{x_2}\pqty{N_V-N_{\mathrm{O}}(x')}\dd{x'}}{\lambda} \approx \frac{1}{2\lambda n_c}\int_{0}^{x}n_e(x')\dd{x'} \nonumber \\
-	                  & = 4.48\times 10^{-16} \pqty{\frac{\lambda}{\si{\meter}}}\int_{0}^{x}\pqty{\frac{n_e(x')}{\si{\per\meter\cubed}}}\pqty{\frac{\dd{x'}}{\si{\meter}}}
+	                  & = 4.48\times 10^{-16} \pqty{\frac{\lambda}{\si{\meter}}}\int_{0}^{x}\pqty{\frac{n_e(x')}{\si{\per\meter\cubed}}}\pqty{\frac{\dd{x'}}{\si{\meter}}} \label{Phipi}
 \end{align}
 Assuming a Gaussian distribution, the electron density at \(\pm\infty\) is approximately equal to the densities just inside the reactor walls. Therefore
 \begin{align}
@@ -44,15 +44,14 @@ With the density at the centre given as:
 \end{align}
 The \(c\) in \cref{c} is the width of the Gaussian distribution and must fit inside the reactor. The DTU tokamak has a minor diameter of \SI{0.25}{\meter}. Thus
 \begin{align}
-	\frac{\Phi(x)}{2\pi} \approx 4.48\times 10^{-16}\pqty{\frac{\lambda}{\si{\meter}}}\SI{0.25}{\meter}n_e & = 1.12\times 10^{-16}\ n_e  \pqty{\frac{2\pi\ \SI{0.25}{\meter}}{\omega\si{\meter}}} \nonumber \\
-	                                                                                                       & = 1.12\times 10^{-16}\ n_e\pqty{\frac{2\pi\SI{3e8}{\per\second}}{\omega}} \nonumber            \\
-	                                                                                                       & = 2.1112\times 10^{-7}\pqty{\frac{n_e}{\omega\si{\second}}}
+	\frac{\Phi}{2\pi} \approx 4.48\times 10^{-16}\pqty{\frac{\lambda}{\si{\meter}}}n_e\SI{0.25}{\meter}\sqrt{2\pi} & = 1.12\times 10^{-16}\ n_e  \pqty{\frac{\sqrt{2\pi} c}{\omega\si{\meter}}} \nonumber \\
+	                                                                                                               & = 8.416\times 10^{-8}\pqty{\frac{n_e}{\omega\si{\second}}}\label{Phipi2}
 \end{align}
 Remembering \cref{nenc}
 \begin{align}
-	\omega^2\frac{\epsilon_0\cdot m_{e0}}{e^2} & = \omega^2\frac{\SI{8.854e-12}{\farad\per\meter}\SI{9.109e-31}{\kilo\gram}}{\SI{1.602e-19}{\coulomb}} \\
-	                                           & \Downarrow\nonumber                                                                                   \\
-	n_e                                        & < 0.000314\omega^2 \label{co}
+	\omega^2\frac{\epsilon_0\ m_{e0}}{e^2} & = \omega^2\frac{\SI{8.854e-12}{\farad\per\meter}\ \SI{9.109e-31}{\kilo\gram}}{\SI{1.602e-19}{\coulomb}} \\
+	                                       & \Downarrow\nonumber                                                                                     \\
+	n_e                                    & < 0.000314\omega^2 \label{co}
 \end{align}
 Where any units has been disregarded. We want the largest possible phase shift which means that the lower the frequency the better. However cutoff must first be taken into account.
 Since the cutoff is given by \cref{co} and since we want to measure densities up to \SI{e18}{\per\meter\cubed} the minimum frequency of the wave is
@@ -64,7 +63,19 @@ Since the cutoff is given by \cref{co} and since we want to measure densities up
 Given the available emitters, the best emitter is therefore the one with \(f=60\si{GHz}\).
 \subsection{Beam Phaseshifts}
 The goal of the interferometer is to find the phaseshift between the microwave beam in vacuum and in plasma. Our suggestion is a setup involving a interferometer emitting a beam through the center of the reactor. The first measurement would be through vacuum to find the source phase. Afterwards phase measurements can be conducted with an active plasma in the reactor.
-So by first measuring the phase of the probing beam in vacuum, one can simply measure the phase shift and find the density according to \todo[inline]{Write results and finish this}
+So by first measuring the phase of the probing beam in vacuum, one can simply measure the phase shift.\\
+We know from \cref{Phipi,c,,Phipi2} that:
+\begin{align}
+	\frac{\Phi}{2\pi} = 8.416\times 10^{-8}\pqty{\frac{n_e}{\omega\si{\second}}}
+\end{align}
+So for different average electron densities through the plasma one can plot the resulting phaseshifts.
+This plot is shown in \cref{PhPlot}.
+\begin{figure}
+	\centering
+	\includegraphics{MatlabFigures/PhaseShift/PhaseShift.eps}
+	\caption{Electron densities for different wavelengths and phaseshifts}
+	\label{PhPlot}
+\end{figure}
 \subsection{Evolving beam width}
 \begin{wrapfigure}[14]{r}{.4\textwidth}
 	\vspace{-5mm}
@@ -83,15 +94,15 @@ From this equation one can track the spatial propagation of the wave. In this pr
 \end{align}
 , and \(f\) being the frequency, the sources' beam waists are given as such:
 \begin{align}
-	\qq*{\SI{60}{\giga\hertz}}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 60\times10^9}}^2}\label{60}   \\
-	\qq*{\SI{98}{\giga\hertz}}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 98\times10^9}}^2}\label{98}   \\
-	\qq*{\SI{130}{\giga\hertz}} & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 130\times10^9}}^2}\label{130}
+	\SI{60}{\giga\hertz}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 60\times10^9}}^2}\label{60}   \\
+	\SI{98}{\giga\hertz}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 98\times10^9}}^2}\label{98}   \\
+	\SI{130}{\giga\hertz} & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 130\times10^9}}^2}\label{130}
 \end{align}
-For the three given sources in this project, the beam waist has been plotted on \cref{BeamProp}.
+For the three given sources in this project, the beam waist has been plotted on \cref{BeamProp}
 \begin{figure}
 	\centering
-	\includegraphics[width=.4\textwidth]{Figures/BeamProp.eps}
-	\caption{Beam Waist for the three microwave sources. The functions are \cref{60,98,,130}}
+	\includegraphics[width=.5\textwidth]{Figures/BeamProp.eps}
+	\caption{Beam Waist for the three microwave sources. The functions are \cref{60,98,,130}.}
 	\label{BeamProp}
 \end{figure}
 It is undesireable for some of the beam to not reach the output port and instead propagate into the reactor wall, as this will result in a lesser signal strength. Therefore it can be nesessary to deploy a gaussian telescope.
