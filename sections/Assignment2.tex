@@ -62,20 +62,19 @@ Since the cutoff is given by \cref{co} and since we want to measure densities up
 \end{align}
 Given the available emitters, the best emitter is therefore the one with \(f=60\si{GHz}\).
 \subsection{Beam Phaseshifts}
+\begin{wrapfigure}[12]{r}{.5\textwidth}
+	\includegraphics[width=.5\textwidth]{MatlabFigures/PhaseShift/PhaseShift.eps}
+	\caption{Electron densities for different wavelengths and phaseshifts}
+	\label{PhPlot}
+\end{wrapfigure}
 The goal of the interferometer is to find the phaseshift between the microwave beam in vacuum and in plasma. Our suggestion is a setup involving a interferometer emitting a beam through the center of the reactor. The first measurement would be through vacuum to find the source phase. Afterwards phase measurements can be conducted with an active plasma in the reactor.
 So by first measuring the phase of the probing beam in vacuum, one can simply measure the phase shift.\\
 We know from \cref{Phipi,c,,Phipi2} that:
 \begin{align}
 	\frac{\Phi}{2\pi} = 8.416\times 10^{-8}\pqty{\frac{n_e}{\omega\si{\second}}}
 \end{align}
-So for different average electron densities through the plasma one can plot the resulting phaseshifts.
-This plot is shown in \cref{PhPlot}.
-\begin{figure}
-	\centering
-	\includegraphics{MatlabFigures/PhaseShift/PhaseShift.eps}
-	\caption{Electron densities for different wavelengths and phaseshifts}
-	\label{PhPlot}
-\end{figure}
+So for different average electron densities through the plasma, one can plot the resulting phaseshifts.
+Using the code in \cref{PSD} the plot in \cref{PhPlot} is generated. The measured phase shift is then correlated to an electron density using \cref{PhPlot}.
 \subsection{Evolving beam width}
 \begin{wrapfigure}[14]{r}{.4\textwidth}
 	\vspace{-5mm}
@@ -99,7 +98,9 @@ From this equation one can track the spatial propagation of the wave. In this pr
 	\SI{130}{\giga\hertz} & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 130\times10^9}}^2}\label{130}
 \end{align}
 For the three given sources in this project, the beam waist has been plotted on \cref{BeamProp}
-\begin{figure}
+\newline
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=.5\textwidth]{Figures/BeamProp.eps}
 	\caption{Beam Waist for the three microwave sources. The functions are \cref{60,98,,130}.}
@@ -144,11 +145,17 @@ The script gave the results:
 	\mqty{w_1 = \SI{0.0145}{\meter} & w_2 = \SI{0.0220}{\meter}                                            \\
 	d_1 = \SI{0.2243}{\meter}       & d_2 = \SI{0.2257}{\meter} & d_3 = \SI{0.232}{\meter}}\label{interou}
 \end{align}
-Furtermore it plots a sketch of the desired interferometer setup. The sketch can be seen in \cref{AWESOME}.
+Furtermore the code plots a sketch of the desired interferometer setup. The sketch can be seen in \cref{AWESOME}.
 \begin{figure}
 	\centering
 	\includegraphics[width=.7\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
 	\caption{Gaussian beam telecsope interferometer setup with input parameters shown in \cref{interin} and output parameters shown in \cref{interou}}
 	\label{AWESOME}
 \end{figure}
-\todo[inline]{Write section about interferometer considerations}
+\newline Lastly it should be mentioned that the beam waist confinement does not matter if the wave is refracted into the side of the reactor. As the plasma density varies from the center and out, the plasma itself act as a variable lens with variable refractive indices. If the beam is emitted straight through the center, the refractive indices will only shorten and lengthen the wavelength back to normal, however if the beam is emmited off center, it will be refracted away from the center. In such a setup, further calculations need to be conducted to determine variation in signal strength, phase and wavelength. The two described setups are depicted on \cref{Refrac}.
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{Figures/Refraction.eps}
+	\caption{Refraction of the probing beam at center and off center.}
+	\label{Refrac}
+\end{figure}
