@@ -3,6 +3,7 @@
 In the \nth{5} chapter of the textbook by Freidberg\cite{freidberg_plasma_2007}, he makes a simple model for designing a fusion reactor power plant.
 The model uses simple geometric and electromagnetic assumptions with little involvement of plasma physics. The variables put into the model are shown in \cref{VFR}.
 \begin{table}
+	\centering
 	\begin{tabular}{lr}
 		\toprule
 		Symbol                         & Quantity                                                                                 \\
@@ -22,6 +23,7 @@ The model uses simple geometric and electromagnetic assumptions with little invo
 \end{table}
 \cref{QFR} shows the output quantities from the model.
 \begin{table}
+	\centering
 	\begin{tabular}{llr}
 		\toprule
 		Symbol                    & Quantity                                                       & Obtained values                  \\
@@ -74,7 +76,7 @@ With $a_{\max}$ the major radius and $a_{\min}$ the minor radius of the ellipse.
 \end{align}
 which can be parameterised as
 \begin{align}
-	\mqty[x_1 \\y_1] &= \mqty[a_{\min}\cos{\phi}\\\kappa a_{\min}\sin{\phi}] \\
+	\mqty[x_1 \\y_1] &= \mqty[a_{\min}\cos{\phi}\\\kappa a_{\min}\sin{\phi}]
 	\label{eq:inner_ellipse}
 \end{align}
 Meanwhile the blanket must be implemented as an ellipse or swelled ellipse. The true ellipse results in a difference of thickness in the blanket while the second results in a blanket of equal thickness throughout the structure. To this, the choice of implementing the blanket as a true ellipse has been made, since it simplifies derivations a bit. Note however, that keeping a constant thickness is the preferable option as it will reduce the engineering volume and hence the cost of the machine.\\
@@ -107,6 +109,7 @@ Using the same arguments as in the book, the B-field in the centre is surprising
 \end{align}
 with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new equations are inserted in the code. The results are displayed in \ref{tab:ellip_output}. The plasma volume and surface area is of course increased as the plasma was made higher. This of course also results in a decreased power density. Overall, parameters such as $B_{0}$, $\beta$ and $\tau_{\si{E_{\min}}}$ while changing a bit, they were not changed significantly.
 \begin{table}
+	\centering
 	\begin{tabular}{llr}
 		\toprule
 		Symbol                    & Quantity                                                       & Obtained values                  \\
@@ -132,6 +135,7 @@ with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new equations are in
 \subsection{Main parameters for DEMO}
 Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters seen in table \ref{tab:DEMO}. Since $R_{0}$ is directly proportional to the electric power this of course increases linearly. The other geometric output parameters regarding areas and volumes also increase as a result. $\beta$ has decreased a lot, so the plasma is not confined effectively in DEMO.
 \begin{table}
+	\centering
 	\begin{tabular}{llr}
 		\toprule
 		Symbol                    & Quantity                                                       & Obtained values                  \\
@@ -157,6 +161,7 @@ Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters s
 \subsection{Designs for DEMO}
 With $P_{\si{E}}$, $\kappa=2$ and $A=R_{0}/a_{\min}=3\Leftrightarrow R_{0}=3\, a_{\min}$. This is implemented in the code and the results are displayed in \ref{tab:DEMO2}. $\beta$ has increased a bit but only to $4.55\%$. $R_{0}$ has been forced down, so the plasma volume etc. has decreased as well. Overall it seems like a smaller $R_{0}$ while keeping $a_{min}$ fixed is an improvement. Or in other words, $A=3$ is more desirable than $A\approx 5$.
 \begin{table}
+	\centering
 	\begin{tabular}{llr}
 		\toprule
 		Symbol                    & Quantity                                                       & Obtained values                  \\
@@ -184,7 +189,7 @@ Designing the tokamak with $\kappa$ and $A$ as free parameters has led us to try
 $V_{\si{P}}$ and $A_{\si{P}}$ were calculated earlier so
 \begin{align}
 	\frac{V_{\si{P}}}{A_{\si{P}}} & =\frac{2\,\pi\, R_{0}\,\kappa\, a_{\min}^{2}}{2\,\pi\, R_{0}\,\pi\, (3\,(a+\kappa\, a_{\min})-\sqrt{(3\, a_{\min}+\kappa\, a_{\min})\,(a+3\,\kappa\, a_{\min})})} \nonumber \\
-	&=\frac{\kappa\, a_{\min}}{\pi\,(3+3\,\kappa-\sqrt{3+\kappa}\,\sqrt{1+3\,\kappa})}
+	                              & =\frac{\kappa\, a_{\min}}{\pi\,(3+3\,\kappa-\sqrt{3+\kappa}\,\sqrt{1+3\,\kappa})}
 \end{align}
 The expression scales linearly with $a_{min}$ so we set it equal to $1\si{m}$ since it has no effect on the choice of $\kappa$. Differentiating with respect to $\kappa$ and plotting is done, with the results shown in Figure \ref{kappa_change}. Considering the figure, $\kappa=2.5$ is chosen as the change is close enough to zero given this value.\\
 Now work will be done towards choosing a value for $A$. First for geometric reasons a minimum $R_{0}$ is calculated. It is simply $R_{0}=a_{\min}+b+c$ where $a_{min}$ is to be determined, $b=1.2\si{m}$ and $c=\frac{2\,\xi}{1-\xi}(\kappa\, a_{\min}+b)$. Meanwhile $A$ is chosen to optimize $\beta$. Inserting $R_{0}$ into $B_{0}$ in the textbook yields
@@ -217,6 +222,7 @@ This function is plotted in \cref{beta_vs_a} and for $(\beta=10\%$ $a=1.938\si{\
 	\label{A_kappa}
 \end{figure}
 \begin{table}
+	\centering
 	\begin{tabular}{llr}
 		\toprule
 		Symbol                    & Quantity                                                       & Obtained values                \\
