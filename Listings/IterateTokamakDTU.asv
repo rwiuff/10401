@@ -51,20 +51,11 @@ elseif l == 4
     x=cat(1,x,i);
     end
 end
-b = p1(:,1);
-c = p1(:,2);
-a = p1(:,3);
-R_0 = p1(:,4);
-A = p1(:,5);
-A_p = p1(:,6);
-V_p = p1(:,7);
-P_dens = p1(:,8);
-p = p1(:,9);
-n = p1(:,10);
-B_0 = p1(:,11);
-beta = p1(:,12);
-tau_E_min = p1(:,13);
-C_per_watt = p1(:,14);
+narray = [b, c, a, R_0, A, A_p, V_p, P_dens, p,...
+        n, B_0, beta, tau_E_min, C_per_watt]
+for i=1:14
+    
+end
 
 
 fileT = ["Blanket-shieldThickness", "MagnetCoilThickness"...
