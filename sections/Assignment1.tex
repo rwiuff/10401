@@ -61,6 +61,22 @@ The variable parameters are the electric power \(P_E\), the maximum wall loading
 \cref{IterateTokamakDTU} includes the code for iterating the matlab model over various paremeters.
 \subsubsection{Change in desired power output.}
 For the rise in megawatts produced (\SIrange{500}{1000}{\mega\watt}) there are a linear rise in aspect ratio, major radius, plasma surface and plasma volume. The rest of the parameters where constant except for the magnetic field strenght at the magnetic axis and the normalised plasma pressure. These are shown in \cref{PE}.
+% \begin{figure}
+% 	\centering
+% 	\begin{subfigure}[h!]{.40\textwidth}
+% 		\includegraphics[width=\textwidth]{MathlabFigures/DesiredOutputPower/MagnetCoilThickness.eps}
+% 		\caption{}
+% 		\label{PEM}
+% 	\end{subfigure}
+% 	~
+% 	\begin{subfigure}[h!]{.40\textwidth}
+% 		\includegraphics[width=\textwidth]{MathlabFigures/DesiredOutputPower/PlasmaBetaInTheCetre.eps}
+% 		\caption{}
+% 		\label{PEP}
+% 	\end{subfigure}
+% 	\caption{}
+% 	\label{PE}
+% \end{figure}
 % \subsubsection{\(P_W\) \SIrange{0}{10}{\mega\watt\per\meter\squared}}
 % \subsubsection{\(B_{\max}\) \SIrange{0}{20}{\tesla}}
 % \subsubsection{\(\sigma_{\max}\) \SIrange{2000}{5000}{\atm}}
@@ -245,23 +261,3 @@ This function is plotted in \cref{beta_vs_a} and for $(\beta=10\%$ $a=1.938\si{\
 	\caption{Output quantities for the elliptical model after $\beta$ and $A$ has been optimised}
 	\label{tab:DEMO3}
 \end{table}
-%, even after increasing the radii to accomodate the larger ellipses describing the blanket-and-shield. This does however mean that the fixed thickness, \(b\) from Freidberg's model is variable. To find this variation the parametric ellipses defining the blanket-and-shield are defined with \(b\) being the length difference between the larger radii and the length difference between the smaller radii.
-%\begin{wrapfigure}[14]{r}{.4\textwidth}
-%\vspace{-5mm}
-%	\includegraphics[width=.4\textwidth]{MatlabFigures/ShieldThickness/ShieldThickness.eps}
-%	\caption{The profile of the blanket-and-shield and the thickness as a function of the angle around origo, \(\phi\). The parameters here are given in \cref{ellparam}}
-%	\label{ShTh}
-%\end{wrapfigure}
-%\begin{align}
-%	\mqty[x_1 \\y_1] &= \mqty[a_{\min}\cos{\phi}\\\kappa a_{\min}\sin{\phi}] \\
-%	\mqty[x_2 \\y_2] &= \mqty[\pqty{b+a_{\min}}\cos{\phi}\\\kappa \pqty{b+a_{\min}}\sin{\phi}]
-%\end{align}
-%At a given angle, \(\phi\), the distance must be:
-%\begin{align}
-%	\vb{u}-\vb{v}       & = \mqty[\cos{\phi}b                                  \\\kappa\sin{\phi}b] \\
-%	\abs{\vb{u}-\vb{v}} & = \sqrt{\cos^2{\phi}\ b^2+\kappa^2\sin^2{\phi}\ b^2}
-%\end{align}
-%An example is given in \cref{ShTh}. Here the parameters are:
-%\begin{alignat}{3}\label{ellparam}
-%	\mqty{a_{\min} \\\kappa\\b}&\ \mqty{=\\=\\=}\ &\mqty{2\\2\\1.2}
-%\end{alignat}

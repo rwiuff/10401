@@ -56,8 +56,10 @@
 \usepackage[european]{circuitikz}
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm}
+\def\axisdefaultwidth{10cm}
 \usepgfplotslibrary{external}
-%\tikzexternalize
+\usepgfplotslibrary{units}
+\tikzexternalize
 
 %Header footer
 \usepackage{fancyhdr}
@@ -145,20 +147,20 @@
 \setcounter{page}{1}
 
 %Text
-\section{Intro}
+\subsection{Intro}
 \input{sections/Intro.tex}
-\section{Part 1: A simple reactor model}
+\section{A simple reactor model}
 \input{sections/Assignment1.tex}
-\section{Part 2: Diagnostics via interferometry}
+\section{Diagnostics via interferometry}
 \input{sections/Assignment2.tex}
-\section{Part 3: Fusor exercise}
+\section{Fusor exercise}
 \input{sections/Assignment3.tex}
 % \begin{acknowledgments}
 % 	The authors would like to thank...
 % \end{acknowledgments}
-\listoftodos
 %End of text
-
+% List of ToDos
+%\listoftodos
 %Bibliography herunder:
 \newpage
 \onecolumngrid
