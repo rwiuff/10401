@@ -1,9 +1,9 @@
 close all
 clear all
 
-titl = ["Desired, output, power, [MW]", "Maximum, wall, load, [MW, m^-2]", ...
-    "Magnetic, field, at, the, edge, of, the, coil, [T]", ...
-    "Tensile, strenght, of, the, magnetic, field, coils, [atm]"];
+titl = ["Desired output power [MW]", "Maximum wall load [MW, m^-2]", ...
+    "Magnetic field at the edge of the coil [T]", ...
+    "Tensile strenght of the magnetic field coils [atm]"];
 foldertitl = ["PE", "PW", "Bmax", "sigmamax"];
 
 for d = 1:4
@@ -74,15 +74,19 @@ for d = 1:4
     
     f1 = figure;
     ptau = plot(x, tau_E_min, 'color', 'r', 'LineWidth', 1);
-    title('Min confinement time for satisfaction of (p tau_E)_{min}')
     xlabel(titl(l));
     ylabel('[s]');
     ytickformat('%.2f');
     grid on
     grid minor
+    lgd = legend([ptau], ...
+        {"Min confinement time for satisfaction of (p tau_E)_{min}"});% Figure legend
+    legend('boxoff')
+    legend('Location', 'north')
     figcount = 1;
     printout = (sprintf('Created figure %d of 8', figcount));
     disp(printout)
+    
     f2 = figure;
     pb = plot(x, b, 'color', 'r', 'LineWidth', 1);
     hold on
@@ -107,6 +111,7 @@ for d = 1:4
     figcount = 2;
     printout = (sprintf('Created figure %d of 8', figcount));
     disp(printout)
+    
     f3 = figure;
     hold on
     yyaxis left
@@ -127,6 +132,7 @@ for d = 1:4
     figcount = 3;
     printout = (sprintf('Created figure %d of 8', figcount));
     disp(printout)
+    
     f4 = figure;
     pA_p = plot(x, A_p, 'LineWidth', 1);
     hold on
@@ -143,17 +149,22 @@ for d = 1:4
     figcount = 4;
     printout = (sprintf('Created figure %d of 8', figcount));
     disp(printout)
+    
     f5 = figure;
     pP_dens = plot(x, P_dens, 'color', 'r', 'LineWidth', 1);
-    title('Power density')
     xlabel(titl(l));
     ylabel('[W m^-1]');
     ytickformat('%.2f');
     grid on
     grid minor
+     lgd = legend([pP_dens], ...
+        {"Power density"});% Figure legend
+    legend('boxoff')
+    legend('Location', 'north')
     figcount = 5;
     printout = (sprintf('Created figure %d of 8', figcount));
     disp(printout)
+    
     f6 = figure;
     yyaxis left
     pn = plot(x, n, 'LineWidth', 1);
@@ -173,15 +184,19 @@ for d = 1:4
     figcount = 6;
     printout = (sprintf('Created figure %d of 8', figcount));
     disp(printout)
+    
     if l == 1
         f7 = figure;
         subplot(2, 1, 1);
         pB_0 = plot(x, B_0, 'color', 'b', 'LineWidth', 1);
-        title('Magnetic field at magnetic axis')
         ylabel('[T]');
         ytickformat('%.2f');
         grid on
         grid minor
+        lgd = legend([pB_0], ...
+        {"Magnetic field at magnetic axis"});% Figure legend
+        legend('boxoff')
+        legend('Location', 'south')
         subplot(2, 1, 2);
         B_0(B_0 <= -10) = NaN;
         pB_0 = plot(x, B_0, 'color', 'b', 'LineWidth', 1);
@@ -190,15 +205,22 @@ for d = 1:4
         ytickformat('%.2f');
         grid on
         grid minor
+        lgd = legend([pB_0], ...
+        {"Magnetic field at magnetic axis"});% Figure legend
+        legend('boxoff')
+        legend('Location', 'south')
     else
         f7 = figure;
         pB_0 = plot(x, B_0, 'color', 'b', 'LineWidth', 1);
-        title('Magnetic field at magnetic axis')
         xlabel(titl(l));
         ylabel('[T]');
         ytickformat('%.2f');
         grid on
         grid minor
+        lgd = legend([pB_0], ...
+        {"Magnetic field at magnetic axis"});% Figure legend
+        legend('boxoff')
+        legend('Location', 'south')
     end
     figcount = 7;
     printout = (sprintf('Created figure %d of 8', figcount));
@@ -207,11 +229,14 @@ for d = 1:4
         f8 = figure;
         subplot(2, 1, 1);
         pbeta = plot(x, beta, 'color', 'r', 'LineWidth', 1);
-        title('Normalised plasma preasure in the centre')
         ylabel('[%]');
         ytickformat('%.2f');
         grid on
         grid minor
+        lgd = legend([pbeta], ...
+        {"Normalised plasma preasure in the centre"});% Figure legend
+        legend('boxoff')
+        legend('Location', 'north')
         subplot(2, 1, 2);
         beta(beta >= 100) = NaN;
         pbeta = plot(x, beta, 'color', 'r', 'LineWidth', 1);
@@ -220,15 +245,22 @@ for d = 1:4
         ytickformat('%.2f');
         grid on
         grid minor
+        lgd = legend([pbeta], ...
+        {"Normalised plasma preasure in the centre"});% Figure legend
+        legend('boxoff')
+        legend('Location', 'north')
     else
         f8 = figure;
         pbeta = plot(x, beta, 'color', 'r', 'LineWidth', 1);
-        title('Normalised plasma preasure in the centre')
         xlabel(titl(l));
         ylabel('[%]');
         ytickformat('%.2f');
         grid on
         grid minor
+        lgd = legend([pbeta], ...
+        {"Normalised plasma preasure in the centre"});% Figure legend
+        legend('boxoff')
+        legend('Location', 'north')
     end
     figcount = 8;
     printout = (sprintf('Created figure %d of 8', figcount));
