@@ -146,17 +146,17 @@ The script gave the results:
 	\mqty{w_1 = \SI{0.0145}{\meter} & w_2 = \SI{0.0220}{\meter}                                            \\
 	d_1 = \SI{0.2243}{\meter}       & d_2 = \SI{0.2257}{\meter} & d_3 = \SI{0.232}{\meter}}\label{interou}
 \end{align}
-Furtermore the code plots a sketch of the desired interferometer setup. The sketch can be seen in \cref{AWESOME}.
+Furtermore the code plots a sketch of the desired interferometer setup. The sketch can be seen in \cref{AWESOME}.\newline
 \begin{figure}
 	\centering
 	\includegraphics[width=.7\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
 	\caption{Gaussian beam telecsope interferometer setup with input parameters shown in \cref{interin} and output parameters shown in \cref{interou}}
 	\label{AWESOME}
 \end{figure}
-\newline Lastly it should be mentioned that the beam waist confinement does not matter if the wave is refracted into the side of the reactor. As the plasma density varies from the center and out, the plasma itself act as a variable lens with variable refractive indices. If the beam is emitted straight through the center, the refractive indices will only shorten and lengthen the wavelength back to normal, however if the beam is emmited off center, it will be refracted away from the center. In such a setup, further calculations need to be conducted to determine variation in signal strength, phase and wavelength. The two described setups are depicted on \cref{Refrac}.
-\begin{figure}
+\begin{wrapfigure}[14]{r}{.3\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{Figures/Refraction.eps}
-	\caption{Refraction of the probing beam at center and off center.}
+	\includegraphics[width=.3\textwidth]{Figures/Refraction.eps}
+	\caption{Refraction of the probing beam at center  (top) and off center (bottom).}
 	\label{Refrac}
-\end{figure}
+\end{wrapfigure}
+Lastly it should be mentioned that the beam waist confinement does not matter if the wave is refracted into the side of the reactor. As the plasma density varies from the center and out, the plasma itself act as a variable lens with variable refractive indices. If the beam is emitted straight through the center, the refractive indices will only shorten and lengthen the wavelength back to normal, however if the beam is emmited off center, it will be refracted away from the center. In such a setup, further calculations need to be conducted to determine variation in signal strength, phase and wavelength. The two described setups are depicted on \cref{Refrac}.

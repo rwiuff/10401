@@ -56,8 +56,10 @@
 \usepackage[european]{circuitikz}
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm}
+\def\axisdefaultwidth{10cm}
 \usepgfplotslibrary{external}
-%\tikzexternalize
+\usepgfplotslibrary{units}
+\tikzexternalize
 
 %Header footer
 \usepackage{fancyhdr}
@@ -156,9 +158,9 @@
 % \begin{acknowledgments}
 % 	The authors would like to thank...
 % \end{acknowledgments}
-\listoftodos
 %End of text
-
+% List of ToDos
+%\listoftodos
 %Bibliography herunder:
 \newpage
 \onecolumngrid
