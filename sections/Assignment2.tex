@@ -6,7 +6,7 @@ Using a interferometer one can measure the electron density \(n_e\) of the plasm
 \begin{align}
 	\omega_p^2 \propto n_e
 \end{align}
-For O-mode plasma waves the refractive index is:
+For O-mode plasma waves, the refractive index is:
 \begin{align}
 	N_{\mathrm{O}} = \sqrt{1-\frac{\omega_p^2}{\omega^2}}
 \end{align}
@@ -23,8 +23,9 @@ So for a given frequency, the plasma must not exceed a critical cut off electron
 \end{align}
 With a probing frequency much higher than the plasma frequency and the critical density much higher than the electron density \cref{NO} can be approximated by:
 \begin{align}
-	N_{\mathrm{O}} & = \sqrt{1-\frac{n_e}{n_c}} \approx 1-\frac{1}{2}\frac{n_e}{n_c} 0 1-\frac{\omega_p^2}{2\omega^2}
+	N_{\mathrm{O}} & = \sqrt{1-\frac{n_e}{n_c}} \approx 1-\frac{1}{2}\frac{n_e}{n_c} -\frac{\omega_p^2}{2\omega^2}
 \end{align}
+
 With sufficient accuracy, the linear dependence of the O-mode refractive index on the electron density is obtained if the normalised quantities obey:
 \begin{align}
 	\frac{n_e}{n_c} \leq 0.4 \quad \frac{\omega_p}{\omega} \leq 0.6
@@ -83,19 +84,19 @@ Using the code in \cref{PSD} the plot in \cref{PhPlot} is generated. The measure
 	\label{PropEx}
 \end{wrapfigure}
 In our case we want to use a Gaussian microwave. Such beam propagates spatially as shown in \cref{PropEx}.
-\(w_0\) is the beam initial beam waist determined by the source and \(w(z)\) is the function describing the waist. This equation is:
+\(w_0\) is the initial beam waist determined by the source, and \(w(z)\) is the function describing the waist. This equation is:
 \begin{align}
 	w(z) = w_0(z)\sqrt{1+\pqty{\frac{\lambda z}{\pi w_0^2}}^2}\label{wz}
 \end{align}
-From this equation one can track the spatial propagation of the wave. In this project three sources are given. The initial beam waist is set to \(w_0=\si{0.0275}{\meter}\) corresponding with half a reactor port. With
+From this equation one can track the spatial propagation of the wave. In this project three sources are given. The initial beam waist is set to \(w_0=\SI{0.0275}{\meter}\) corresponding to half a reactor port. With
 \begin{align}
-	\frac{\lambda z}{\pi w_0^2} = \frac{9.542690316\times10^7 z}{w_0^2 f}
+	\frac{\lambda z}{\pi w_0^2} = \frac{9.543\times10^7 z}{w_0^2 f}
 \end{align}
-, and \(f\) being the frequency, the sources' beam waists are given as such:
+, and \(f\) the frequency of the emitter, the sources' beam waists are given as such:
 \begin{align}
-	\SI{60}{\giga\hertz}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 60\times10^9}}^2}\label{60}   \\
-	\SI{98}{\giga\hertz}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 98\times10^9}}^2}\label{98}   \\
-	\SI{130}{\giga\hertz} & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.542690316\times10^7 z}{0.0275^2 \ 130\times10^9}}^2}\label{130}
+	\SI{60}{\giga\hertz}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.543\times10^7 z}{0.0275^2 \ 60\times10^9}}^2}\label{60}   \\
+	\SI{98}{\giga\hertz}  & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.543\times10^7 z}{0.0275^2 \ 98\times10^9}}^2}\label{98}   \\
+	\SI{130}{\giga\hertz} & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.543\times10^7 z}{0.0275^2 \ 130\times10^9}}^2}\label{130}
 \end{align}
 For the three given sources in this project, the beam waist has been plotted on \cref{BeamProp}
 \newline
@@ -106,6 +107,7 @@ For the three given sources in this project, the beam waist has been plotted on 
 	\caption{Beam Waist for the three microwave sources. The functions are \cref{60,98,,130}.}
 	\label{BeamProp}
 \end{figure}
+\todo{indsæt enheden meter. Udvider den sig ikke lidt meget?}
 It is undesirable for some of the beam to not reach the output port and instead propagate into the reactor wall, as this will result in a lesser signal strength. Therefore it can be necessary to deploy a Gaussian telescope.
 \subsection{Gaussian beam telescope interferometer}
 In order to control the beam waist, one can use a Gaussian beam telescope arrangement around the reactor. A lens is placed between the source and the reactor input port and again between the output port and the receiver. From chapter 5 in ``Fusion Plasma Diagnostics with mm-Waves''\cite{PlasmaDiagnosis} the authors explains how such an arrangement can be obtained. Starting with the focal lengths of the lenses,
@@ -118,6 +120,7 @@ The resulting narrowest beam waist after the second lens are given as:
 	w_2 = \frac{f_1}{f_0}w_0
 \end{align}
 This making the transformation wavelength independent\cite[Eq 5.118]{PlasmaDiagnosis}.
+\todo{Hva? fatter det ikke lige}
 The distance to this waist is given as:
 \begin{align}
 	d_3 = \frac{f_1}{f_0}\pqty{f_0+f_1-\frac{f_1}{f_0}d_0}
@@ -134,7 +137,7 @@ Thus the distance from \(w_1\) to the second lens is:
 \begin{align}
 	d_2 = d-d_1
 \end{align}
-Knowing these variables and utilising \cref{wz} we can model a complete setup. Using the Matlab code in \cref{inter}, the following parameters were input:
+Knowing these variables and utilising \cref{wz} we can model a complete setup. Using the Matlab code in \cref{inter}, the following parameters are used:
 \begin{align}
 	\mqty{r_p = \SI{0.055}{\meter} & r = \SI{0.125}{\meter}  & w_0 = \SI{0.0275}{\meter} & freq = \SI{60}{\giga\hertz}        \\
 	d_0 = \SI{0.20}{\meter}        & d_r = \SI{0.10}{\meter} & f_0 = \SI{0.25}{\meter}   & \SI{0.20}{\meter}} \label{interin}
