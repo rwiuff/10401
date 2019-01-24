@@ -41,7 +41,9 @@
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{subcaption}
-\usepackage{caption}
+\usepackage[format=plain,
+            labelfont={bf,it},
+            textfont=it]{caption}
 \usepackage[verbose]{wrapfig}
 \usepackage[a4paper, centering, rmargin=2.5cm, tmargin=2.5cm, lmargin=2.5cm, bmargin=2.5cm]{geometry}
 \usepackage{etoolbox}
@@ -57,9 +59,9 @@
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm}
 \def\axisdefaultwidth{10cm}
-%\usepgfplotslibrary{external}
+\usepgfplotslibrary{external}
 \usepgfplotslibrary{units}
-%\tikzexternalize
+\tikzexternalize
 
 %Header footer
 \usepackage{fancyhdr}
@@ -116,7 +118,7 @@
 	\centering
 	\includegraphics[width=.5\textwidth]{Figures/ITERmachine.jpg}
 	\begin{description}
-		\item[Abstract] \todo[inline]{Write abstract}
+		\item[Abstract] Plasma fusion for energy production is growing scientific field with interest all over the globe as clean and sustainable energy as well as growing energy demands need to be adressed. In the course 10401: Fusion energy and plasma physics we deal with some of the fundamental engineering aspects of a commercial fusion energy power plant as well as the research towards this goal. In this paper we first adress a simple model for such plant and how the model can be improved. Secondly we investigate how to diagnose plasma density with simple interferometry in the DTU reactor. Lastly we made measurements on a fusor and investigate some energy production aspects with such a device. \vspace{3\baselineskip}
 	\end{description}
 	\includegraphics[width=1cm]{Figures/DTU3CMYK.eps}
 \end{abstract}
@@ -160,7 +162,7 @@
 % \end{acknowledgments}
 %End of text
 % List of ToDos
-\listoftodos
+%\listoftodos
 %Bibliography herunder:
 \newpage
 \onecolumngrid
