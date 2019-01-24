@@ -23,7 +23,7 @@ fD = fit(D(:,1), D(:,2), fittype);
 pD = scatter(D(:,1), D(:,2), 'filled', 'b');
 pfD = plot(fD, 'b');
 hold off
-xlabel('Voltage [kV]');
+xlabel('Voltage [-kV]');
 ylabel('Width of spectral line [nm]');
 ytickformat('%.2f');
 lgd = legend([pH, pfH, pD, pfD], ...
