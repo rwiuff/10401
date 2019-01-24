@@ -1,7 +1,7 @@
 % !TEX root = ../Main.tex
-Studying the Inertial electrostatic confinement fusor at DTU. Measurements of neutron counts and the spectral line width are made as a function of the voltage and current. To this, the emission spectrum of the gas are also measured.
+The goal of this exercise is studying the inertial electrostatic confinement fusor at DTU. Measurements of neutron counts and the spectral line width are made as a function of the voltage and current. To this, the emission spectrum of the gas are also measured.
 \subsection{Plasma light emission and spectral line}
-When doing spectroscopy on a plasma of an unknown gas. Optical dispersion splits up the spectrum of light into lines which are then recorded using a detector. This detector measures the frequency/wavelength of the light and the intensity of the light. Thus a plot with the wavelength along the x-axis vs the intensity along the y-axis are produced. For our recordings a typical spectrum looked like that of \cref{SPEC}.
+When doing spectroscopy on a plasma of an unknown gas, optical dispersion splits up the spectrum of light into lines which are then recorded using a spectrometer. This detector measures the frequency/wavelength of the light and the intensity of the light. Thus a plot with the wavelength along the x-axis vs the intensity along the y-axis are produced. For our recordings a typical spectrum looked like that of \cref{SPEC}.
 \begin{figure}[H]
 	\centering
 	\resizebox{\textwidth}{!}{
@@ -44,7 +44,7 @@ So for the obtained widths, the velocities can be estimated via \cref{sigma1d}. 
 \begin{align}
 	KE = \frac{1}{2}mv^2\label{KE}
 \end{align}
-These points are also estimated and plotted along with a fit. The fit is assumed to be some constant, times the square root of the voltage as isolated from \cref{KE}. This is done for both hydrogen and deuterium. The plot can be seen in \cref{MF}.
+These points are also estimated and plotted along with a fit. The fit is assumed to be some constant, times the square root of the voltage as isolated from \cref{KE}. This is done for both hydrogen and deuterium. The plots can be seen in \cref{MF}.
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=.8\textwidth]{MatlabFigures/Asign3/KineticVelo.eps}
@@ -60,7 +60,7 @@ These points are also estimated and plotted along with a fit. The fit is assumed
 \end{align}
 with \(x\) being the applied voltage. Of course the uncertainties from \cref{Vsigma} carries over which is unfortunate. We expected the deuterium and hydrogen energies to be equal which was not the case, but the velocity of hydrogen seems to be larger than the deuterium atoms which is to be expected.
 \subsection{Neutron production rate}
-The fusion reaction rate should increase with voltage and current where approximately every second reaction produce a neutron. Measurements of the neutron production rate are made and seen in \cref{neutron}. It is important to note that only 5 measurements are made, so the sample size is very small. There are 3 parameters that varies throughout the measurements which makes it hard to say anything about the data. There is an unknown dependency on the pressure(and on the voltage and current) since an increasing pressure will decelerate the particles overall, but it will also increase the amount of fuel available. The pressure varies from \SI{1.4}{\micro\bar} to \SI{2}{\micro\bar}. This should have an effect on the neutron rate, but let us disregard that fact for now. The data suggests that a current of \SI{6}{\milli\ampere} is needed to get decent reaction rates when the voltage is in the ranges measured. On top of that, the data also suggests that the voltage needed is between \SI{24}{\volt} and \SI{28}{\volt}. Note that the last suggestion is made at an approximately constant pressure.\\
+The fusion reaction rate should increase with voltage and current where approximately every second reaction produce a neutron. Measurements of the neutron production rate are made and seen in \cref{neutron}. It is important to note that only 5 measurements are made, so the sample size is very small. There are 3 parameters that varies throughout the measurements which makes it hard to say anything about the data. There is an unknown dependency on the pressure (and on the voltage and current) since an increasing pressure will decelerate the particles overall, but it will also increase the amount of fuel available. The pressure varies from \SI{1.4}{\micro\bar} to \SI{2}{\micro\bar}. This should have an effect on the neutron rate, but let us disregard that fact for now. The data suggests that a current of \SI{6}{\milli\ampere} is needed to get decent reaction rates when the voltage is in the ranges measured. On top of that, the data also suggests that the voltage needed is between \SI{24}{\volt} and \SI{28}{\volt}. Note that the last suggestion is made at an approximately constant pressure.\\
 Calculating the total neutron flux at the detector and the total neutron production rate is trivial given Cts./s,  \(\eta_{\mathrm{eff.}}=15\%\), \(A_{\mathrm{det}}=\SI{6e-5}{\meter\squared}\) and \(R_{\mathrm{det}}=\SI{0.5}{\meter}\).
 \begin{align}
 	\Gamma_{\mathrm{n}}=\frac{\mathrm{Cts.}}{\mathrm{s}}\,\frac{1}{\eta_{\mathrm{det}}}\,\frac{1}{A_{\mathrm{det}}}

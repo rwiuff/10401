@@ -46,7 +46,7 @@ The model uses simple geometric and electromagnetic assumptions with little invo
 	\caption{Output quantities in the model in Freidberg's\cite{freidberg_plasma_2007} along with the obtained values when inserting the parameters from \cref{Inputparam}}
 	\label{QFR}
 \end{table}
-This model has been implemented in a Matlab script provided for the course. The script is shown included in \cref{tokamakDTU_asign_1}.
+\newline This model has been implemented in a Matlab script provided for the course. The script is shown included in \cref{tokamakDTU_asign_1}.
 As an example, the model is run with the following parameters:
 \begin{alignat}{3}
 	n_\mathrm{flux \ fraction} & = 0.01                                 & \quad P_E      & = \SI{1000}{\mega\watt} \nonumber       \\
@@ -157,7 +157,7 @@ with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new equations are in
 	\label{tab:ellip_output}
 \end{table}
 \subsection{Main parameters for DEMO}
-Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters seen in  \cref{tab:DEMO}. Since $R_{0}$ is directly proportional to the electric power, it increases linearly. The other geometric output parameters regarding areas and volumes also increase as a result. $\beta$ has decreased a lot, so the plasma is not confined effectively in DEMO.
+Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters seen in  \cref{tab:DEMO}. Since $R_{0}$ is directly proportional to the electric power, it increases linearly. The other geometric output parameters regarding areas and volumes also increase as a result. $\beta$ has decreased a lot, so the plasma is not confined effectively in DEMO according to this model.
 \begin{table}
 	\centering
 	\begin{tabular}{llr}
@@ -228,7 +228,7 @@ Thus \(\beta\) becomes
 \begin{align}
 	\beta=\frac{2148\,(a_{\min}+1.542)^{2}}{\sqrt{a_{\min}}\,(178.8\, a_{\min}+85.8)^{2}}
 \end{align}
-This function is plotted in \cref{beta_vs_a}, and for $\beta=10\%$ $a=\SI{1.938}{\meter})$ is achieved. Therefore $(R_{0}=\SI{1.9378}{\meter}+\SI{1.2}{\meter}+2\cdot 0.11/(1-0.11)\cdot 2.5\cdot \SI{1.938}{\meter}+\SI{1.2}{\meter}=\SI{4.632}{\meter})$ which means $A=\SI{4.632}{\meter}/\SI{1.938}{\meter}=\SI{2.390}{\meter}$
+This function is plotted in \cref{beta_vs_a}, and for $\beta=10\%$ $a=\SI{1.938}{\meter})$ is achieved. Therefore $(R_{0}=\SI{1.9378}{\meter}+\SI{1.2}{\meter}+2\cdot 0.11/(1-0.11)\cdot 2.5\cdot \SI{1.938}{\meter}+\SI{1.2}{\meter}=\SI{4.632}{\meter})$ which means $A=\SI{4.632}{\meter}/\SI{1.938}{\meter}=\SI{2.390}{\meter}$. The output quantities after this optimisation is shown in \cref{tab:DEMO3}
 \begin{figure}
 	\centering
 	\begin{subfigure}[b]{.40\textwidth}
