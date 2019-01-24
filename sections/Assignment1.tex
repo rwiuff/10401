@@ -9,12 +9,12 @@ The model uses simple geometric and electromagnetic assumptions with little invo
 		Symbol                         & Quantity                                                                                 \\
 		\midrule
 		\(n_\mathrm{flux \ fraction}\) & n flux in breeder end/n flux in breeder start \(\bqty{}\)                                \\
-		\(C_F\)                        & Fixed cost propotionality constant \(\bqty{\$}\)                                         \\
-		\(C_I\)                        & Nuclear island cost propotionality constant \(\bqty{\$\cdot\si{\watt\per\meter\cubed}}\) \\
+		\(C_F\)                        & Fixed cost proportionality constant \(\bqty{\$}\)                                         \\
+		\(C_I\)                        & Nuclear island cost proportionality constant \(\bqty{\$\cdot\si{\watt\per\meter\cubed}}\) \\
 		\(P_E\)                        & Desired output power \(\bqty{\si{\mega\watt}}\)                                          \\
 		\(P_W\)                        & Maximum wall load \(\bqty{\si{\mega\watt\per\meter\squared}}\)                           \\
 		\(B_{\max}\)                   & Magnetic field at the edge of the coil \(\bqty{\si{\tesla}}\)                            \\
-		\(\sigma_{\max}\)              & Tensile strenght of the magnetic field coils \(\bqty{\si{\atm}}\)                        \\
+		\(\sigma_{\max}\)              & Tensile strength of the magnetic field coils \(\bqty{\si{\atm}}\)                        \\
 		\(\eta_t\)                     & Energy conversion efficiency \(\bqty{}\)                                                 \\
 		\bottomrule
 	\end{tabular}
@@ -46,48 +46,51 @@ The model uses simple geometric and electromagnetic assumptions with little invo
 	\caption{Output quantities in the model in Freidberg's\cite{freidberg_plasma_2007} along with the obtained values when inserting the parameters from \cref{Inputparam}}
 	\label{QFR}
 \end{table}
-This model has been implemented in a matlab script provided for the course. The script is shown included in \cref{tokamakDTU_asign_1}.
+This model has been implemented in a Matlab script provided for the course. The script is shown included in \cref{tokamakDTU_asign_1}.
 As an example, the model is run with the following parameters:
 \begin{alignat}{3}
 	n_\mathrm{flux \ fraction} & = 0.01                                 & \quad P_E      & = \SI{1000}{\mega\watt} \nonumber       \\
 	P_W                        & = \SI{4}{\mega\watt\per\meter\squared} & \quad B_{\max} & = \SI{13}{\tesla}    \label{Inputparam} \\
 	\sigma_{\max}              & = \SI{3000}{\atm}                      & \quad \eta_t   & = 0.4 \nonumber
 \end{alignat}
-Note that \(C_F\) and \(C_I\) has been ommited as these serve no purpose for this assignment. It is not of interest how expensive the plant will be. Rather the geometries and physical quantities are of interest.
+Note that \(C_F\) and \(C_I\) has been omitted as these serve no purpose for this assignment. It is not of interest how expensive the plant will be. Rather the geometries and physical quantities are of interest.
 The results from the model is given in \cref{QFR}.
+
+
 \subsection{Model sensitivity}
-At this point Freidberg has provided a model that produce some reasonable results for a powerplant. It could be interesting to see how this model behaves when some vital parameters are changed. In the last section the model used the parameters shown in \cref{Inputparam}. In \cref{variparam} are listed some parameter ranges.
+
+
+At this point Freidberg has provided a model that produce some reasonable results for a power plant. It could be interesting to see how this model behaves when some vital parameters are changed. In the last section the model used the parameters shown in \cref{Inputparam}. In \cref{variparam} are listed some parameter ranges.
 \begin{alignat}{3}
 	P_E &: \SIrange{500}{1000}{\mega\watt} & \quad P_W &: \SIrange{0}{10}{\mega\watt\per\meter\squared}\nonumber\\
 	B_{\max} &: \SIrange{0}{20}{\tesla} & \quad \sigma_{\max} &: \SIrange{2000}{5000}{\atm}\label{variparam}
 \end{alignat}
-\cref{IterateTokamakDTU} includes Matlab code that does the folowing:
+\cref{IterateTokamakDTU} includes Matlab code that does the following:
 \begin{enumerate}
 	\item Take a variable range from \cref{variparam}.
 	\item Set all other input parameters as in \cref{Inputparam}.
 	\item Plot the model outputs as functions of the variable range.
 	\item Repeat with another range from \cref{variparam}.
 \end{enumerate}
-The iteration showed some interesting breakdowns in the model. When varying the desired power output there was a breakdown in magnetic field strenght at the magnetic axis as well as in the normalised plasma pressure. This is shown in \cref{PE}.
+The iteration showed some interesting breakdowns in the model. When varying the desired power output there was a breakdown in magnetic field strength at the magnetic axis as well as in the normalised plasma pressure. This is shown in \cref{PE}.
 \begin{figure}
 	\centering
-  \begin{subfigure}[h!]{.45\textwidth}
+  \begin{subfigure}[b]{.46\textwidth}
     \includegraphics[width=\textwidth]{MatlabFigures/PE/f7.eps}
     \caption{The magnetic field at magnetic axis\vspace{\baselineskip}}
     \label{PEM}
   \end{subfigure}
   ~
-  \begin{subfigure}[h!]{.45\textwidth}
+  \begin{subfigure}[b]{.45\textwidth}
     \includegraphics[width=\textwidth]{MatlabFigures/PE/f8.eps}
-    \caption{The normalised plasma preasure in the centre}
+    \caption{The normalised plasma pressure in the centre}
     \label{PEB}
   \end{subfigure}
 	\caption{Model breakdown when iterating over desired power output.}
 	\label{PE}
 \end{figure}
 In this case limits for what is physically possible broke and in these cases the model is unusable.
-\todo[inline]{Add to this section}
-The full gallery of model output is found in \cref{ITFR}
+The full gallery of model output is found in \cref{ITFR}.
 \subsection{Elliptic Cross section}
 Freidberg's model assumes a circular cross section of the plasma. In reality this is not the case, and as of such we will now make a more realistic, yet still approximate reactor for an elliptic plasma cross section.
 In describing the geometry one refers to the elongation ratio:
@@ -104,7 +107,7 @@ which can be parameterised as
 	\label{eq:inner_ellipse}
 \end{align}
 Meanwhile the blanket must be implemented as an ellipse or swelled ellipse. The true ellipse results in a difference of thickness in the blanket while the second results in a blanket of equal thickness throughout the structure. To this, the choice of implementing the blanket as a true ellipse has been made, since it simplifies derivations a bit. Note however, that keeping a constant thickness is the preferable option as it will reduce the engineering volume and hence the cost of the machine.\\
-The outher layer is parameterised
+The outer layer is parameterised
 \begin{align}
 	\mqty[x_2 \\y_2] &= \mqty[\pqty{b+a_{\min}}\cos{\phi}\\\kappa \pqty{b+a_{\min}}\sin{\phi}]
 	\label{eq:outer_ellipse}
@@ -217,7 +220,7 @@ $V_{\si{P}}$ and $A_{\si{P}}$ were calculated earlier so
 	                              & =\frac{\kappa\, a_{\min}}{\pi\,(3+3\,\kappa-\sqrt{3+\kappa}\,\sqrt{1+3\,\kappa})}
 \end{align}
 The expression scales linearly with $a_{min}$ so we set it equal to $1\si{m}$ since it has no effect on the choice of $\kappa$. Differentiating with respect to $\kappa$ and plotting is done, with the results shown in Figure \ref{kappa_change}. Considering the figure, $\kappa=2.5$ is chosen as the change is close enough to zero given this value.\\
-Now work will be done towards choosing a value for $A$. First for geometric reasons a minimum $R_{0}$ is calculated. It is simply $R_{0}=a_{\min}+b+c$ where $a_{min}$ is to be determined, $b=1.2\si{m}$ and $c=\frac{2\,\xi}{1-\xi}(\kappa\, a_{\min}+b)$. Meanwhile $A$ is chosen to optimize $\beta$. Inserting $R_{0}$ into $B_{0}$ in the textbook yields
+Now work will be done towards choosing a value for $A$. First for geometric reasons a minimum $R_{0}$ is calculated. It is simply $R_{0}=a_{\min}+b+c$ where $a_{min}$ is to be determined, $b=1.2\si{m}$ and $c=\frac{2\,\xi}{1-\xi}(\kappa\, a_{\min}+b)$. Meanwhile $A$ is chosen to optimise $\beta$. Inserting $R_{0}$ into $B_{0}$ in the textbook yields
 \begin{align}
 	B_{0}=\frac{2\,\xi\,(\kappa\, a_{\min}+b)\, B_{max}}{((2\,\kappa-1)\, a_{\min}+a+b)}=\frac{178.75\, a_{\min}+85.8}{55.5+36\, a_{\min}}
 \end{align}
