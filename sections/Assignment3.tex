@@ -28,7 +28,7 @@ When doing spectroscopy on a plasma of an unknown gas. Optical dispersion splits
 \end{figure}
 Each peak correspond with a constituent gas in the fusor.
 The peaks present on the spectrum are subject to broadening effects. Considering the Doppler effect, each photon's frequency will be shifted since the particles (which are the emitters) are moving at fast speeds (the Doppler shift increases with speed). Therefore if each particle where moving in the same direction, the entire intensity peak would be shifted. But since the particles are moving more or less isotropic around the centre of the device, the peaks are not shifted but rather broadened around the normal emission wavelength. To this, it is also noted that the Doppler broadening increases if particles are moving faster.\\
-Considering \cref{fig:SPEC}, a spectrum is shown with central wavelengths around \SI{656}{\nano\meter}, \SI{486}{\nano\meter} and \SI{433}{\nano\meter} which correspond to accepted values of hydrogen light emission wavelengths\footnote{\href{https://en.wikipedia.org/wiki/Hydrogen_spectral_series}{``Hydrogen spectral series'' - Wikipedia (Visited January \nth{22})}}. Meanwhile the spectral lines of Deuterium only differs by a factor of $1.000272$\footnote{\href{https://en.wikipedia.org/wiki/Deuterium#Spectroscopy}{``Deuterium\#Spectroscopy'' - Wikipedia (Visited January \nth{22})}}, which will not be detected using our methods. There are other peaks but those peaks are due to noise from impurities etc.\\
+Considering \cref{SPEC}, a spectrum is shown with central wavelengths around \SI{656}{\nano\meter}, \SI{486}{\nano\meter} and \SI{433}{\nano\meter} which correspond to accepted values of hydrogen light emission wavelengths\footnote{\href{https://en.wikipedia.org/wiki/Hydrogen_spectral_series}{``Hydrogen spectral series'' - Wikipedia (Visited January \nth{22})}}. Meanwhile the spectral lines of Deuterium only differs by a factor of $1.000272$\footnote{\href{https://en.wikipedia.org/wiki/Deuterium#Spectroscopy}{``Deuterium\#Spectroscopy'' - Wikipedia (Visited January \nth{22})}}, which will not be detected using our methods. There are other peaks but those peaks are due to noise from impurities etc.\\
 Since the speed of the particles increases with the voltage we expect the line broadening to do the same since \(\sigma=\lambda_{0}/c\, v_{\mathrm{1D}}\). While there seems to be enormous uncertainties on the hydrogen measurements, \cref{Vsigma} shows a tendency to increase for both hydrogen and deuterium. Disregarding outliers, the hydrogen also seems to have a wider spectral line than deuterium which makes sense, due to the mass difference between the species. Meanwhile the uncertainties seen might be due to differences in pressure, which leads to differences in kinetic energy lost per time. Other uncertainties are most likely also present.
 \begin{figure}
 	\centering
@@ -65,7 +65,8 @@ Calculating the total neutron flux at the detector and the total neutron product
 \begin{align}
 	\Gamma_{\mathrm{n}}=\frac{\mathrm{Cts.}}{\mathrm{s}}\,\frac{1}{\eta_{\mathrm{det}}}\,\frac{1}{A_{\mathrm{det}}}
 \end{align}
-And \(\mathrm{n}/\mathrm{s}=4\,\pi\, R_{\mathrm{det}}\,\Gamma_{\mathrm{n}}\). Now the power is equal to the product of the current and voltage but there is a voltage drop across the resistor bank which must be taken into account. Meanwhile the fusion power \(P_{\mathrm{fusion}}=\mathrm{n}/\mathrm{s}\, (E_{\mathrm{n}}+E_{\alpha})\) with \(E_{\mathrm{n}},\,E_{T}\) being the energy release of the reaction that results in a neutron and a tritium particle respectively(disregarding the other resulting particles).
+And \(\mathrm{n}/\mathrm{s}=4\,\pi\, R_{\mathrm{det}}\,\Gamma_{\mathrm{n}}\). Now the power is equal to the product of the current and voltage, but there is a voltage drop across the resistor bank which must be taken into account. Meanwhile the fusion power \(P_{\mathrm{fusion}}=\mathrm{n}/\mathrm{s}\, (E_{\mathrm{n}}+E_{\alpha})\) with \(E_{\mathrm{n}},\,E_{T}\) being the energy release of the reaction that results in a neutron and a tritium particle respectively(disregarding the other resulting particles). For the remaining problems \cref{neutron} displays the data that are fitted in \cref{FusorContour}. On the Q-value; the tokamak reactor JET for example displays a Q-value of around 0.67\footnote{https://en.wikipedia.org/wiki/Fusion_energy_gain_factor}. This is approximately \SI{e5}{} times higher than the DTU fusor, so the inertial electrostatic confinement technology is way behind the magnetostatic confinement technology. \\
+Calculating the neutron production rates etc. is easy enough, however due to a very small amount of data points, it is hard to say anything meaningful about the fits. We do see an increase in rates when increasing the current and voltage. But the size of the contours should tell us that this conclusion is laughably optimistic. On top of that, the pressure is varying which is not taken into account. Thus our conclusion is that this data is close to, if not completely unusable.  \todo{Er det for edgy skrevet?}
 \begin{table}[h!]
 	\begin{tabular}{rrrrrrrr}
 		\toprule
@@ -83,25 +84,25 @@ And \(\mathrm{n}/\mathrm{s}=4\,\pi\, R_{\mathrm{det}}\,\Gamma_{\mathrm{n}}\). No
 \end{table}
 \begin{figure}
 	\centering
-	\begin{subfigure}[b]{.40\textwidth}
+	\begin{subfigure}[b]{.48\textwidth}
 		\includegraphics[width=\textwidth]{MatlabFigures/Asign3/Counts.eps}
 		\caption{Neutron count rates as functions of current and voltage}
 		\label{Counts}
 	\end{subfigure}
 	~
-	\begin{subfigure}[b]{.40\textwidth}
+	\begin{subfigure}[b]{.48\textwidth}
 		\includegraphics[width=\textwidth]{MatlabFigures/Asign3/NFlux.eps}
 		\caption{The neutron flux at the detector as functions of current and voltage}
 		\label{decflux}
 	\end{subfigure}
 	
-	\begin{subfigure}[b]{.40\textwidth}
+	\begin{subfigure}[b]{.48\textwidth}
 	    \includegraphics[width=\textwidth]{MatlabFigures/Asign3/P.eps}
 	    \caption{The fusion power as functions of current and voltage}
 	    \label{FusPower}
 	\end{subfigure}
 	~
-	\begin{subfigure}[b]{.40\textwidth}
+	\begin{subfigure}[b]{.48\textwidth}
 	    \includegraphics[width=\textwidth]{MatlabFigures/Asign3/Q.eps}
 	    \caption{The Q-factor as functions of current and voltage}
 	    \label{QFac}

@@ -27,6 +27,7 @@
 	number-unit-product = \ ,
 	multi-part-units = single ,
 	alsoload = synchem ,
+	alsoload = addn
 }
 \DeclareSIUnit\atm{atm}
 
@@ -59,9 +60,9 @@
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm}
 \def\axisdefaultwidth{10cm}
-\usepgfplotslibrary{external}
+%\usepgfplotslibrary{external}
 \usepgfplotslibrary{units}
-\tikzexternalize
+%\tikzexternalize
 
 %Header footer
 \usepackage{fancyhdr}
@@ -164,7 +165,7 @@
 % \end{acknowledgments}
 %End of text
 % List of ToDos
-%\listoftodos
+\listoftodos
 %Bibliography herunder:
 \newpage
 \onecolumngrid

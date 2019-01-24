@@ -107,7 +107,6 @@ For the three given sources in this project, the beam waist has been plotted on 
 	\caption{Beam Waist for the three microwave sources. The functions are \cref{60,98,,130}.}
 	\label{BeamProp}
 \end{figure}
-\todo{indsæt enheden meter. Udvider den sig ikke lidt meget?}
 It is undesirable for some of the beam to not reach the output port and instead propagate into the reactor wall, as this will result in a lesser signal strength. Therefore it can be necessary to deploy a Gaussian telescope.
 \subsection{Gaussian beam telescope interferometer}
 In order to control the beam waist, one can use a Gaussian beam telescope arrangement around the reactor. A lens is placed between the source and the reactor input port and again between the output port and the receiver. From chapter 5 in ``Fusion Plasma Diagnostics with mm-Waves''\cite{PlasmaDiagnosis} the authors explains how such an arrangement can be obtained. Starting with the focal lengths of the lenses,
@@ -119,9 +118,8 @@ The resulting narrowest beam waist after the second lens are given as:
 \begin{align}
 	w_2 = \frac{f_1}{f_0}w_0
 \end{align}
-This making the transformation wavelength independent\cite[Eq 5.118]{PlasmaDiagnosis}.
-\todo{Hva? fatter det ikke lige}
-The distance to this waist is given as:
+The use of two lenses make the transformation wavelength independent (Eq 5.118)\cite{PlasmaDiagnosis}, thus the only interaction with the wavelength of the probing beam will be that of the plasma itself.
+The distance to the minimum waist after the second lens is given as:
 \begin{align}
 	d_3 = \frac{f_1}{f_0}\pqty{f_0+f_1-\frac{f_1}{f_0}d_0}
 \end{align}
