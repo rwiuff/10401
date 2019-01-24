@@ -8,14 +8,14 @@ The model uses simple geometric and electromagnetic assumptions with little invo
 		\toprule
 		Symbol                         & Quantity                                                                                 \\
 		\midrule
-		\(n_\mathrm{flux \ fraction}\) & n flux in breeder end/n flux in breeder start \(\bqty{}\)                                \\
+		\(n_\mathrm{flux \ fraction}\) & n flux in breeder end/n flux in breeder start \(\bqty{1}\)                                \\
 		\(C_F\)                        & Fixed cost proportionality constant \(\bqty{\$}\)                                         \\
 		\(C_I\)                        & Nuclear island cost proportionality constant \(\bqty{\$\cdot\si{\watt\per\meter\cubed}}\) \\
 		\(P_E\)                        & Desired output power \(\bqty{\si{\mega\watt}}\)                                          \\
 		\(P_W\)                        & Maximum wall load \(\bqty{\si{\mega\watt\per\meter\squared}}\)                           \\
 		\(B_{\max}\)                   & Magnetic field at the edge of the coil \(\bqty{\si{\tesla}}\)                            \\
 		\(\sigma_{\max}\)              & Tensile strength of the magnetic field coils \(\bqty{\si{\atm}}\)                        \\
-		\(\eta_t\)                     & Energy conversion efficiency \(\bqty{}\)                                                 \\
+		\(\eta_t\)                     & Energy conversion efficiency \(\bqty{1}\)                                                 \\
 		\bottomrule
 	\end{tabular}
 	\caption{Variables in the Freidberg's model}
@@ -89,10 +89,10 @@ The iteration showed some interesting breakdowns in the model. When varying the 
 	\caption{Model breakdown when iterating over desired power output.}
 	\label{PE}
 \end{figure}
-In this case limits for what is physically possible broke and in these cases the model is unusable.
+In this case, limits for what is physically possible broke and in these cases the model is unusable.
 The full gallery of model output is found in \cref{ITFR}.
 \subsection{Elliptic Cross section}
-Freidberg's model assumes a circular cross section of the plasma. In reality this is not the case, and as of such we will now make a more realistic, yet still approximate reactor for an elliptic plasma cross section.
+Freidberg's model assume a circular cross section of the plasma. In reality this is not the case. We will now make a more realistic, yet still approximate reactor for an elliptic plasma cross section.
 In describing the geometry one refers to the elongation ratio:
 \begin{align}
 	\kappa = \frac{a_{\max}}{a_{\min}}
@@ -106,20 +106,20 @@ which can be parameterised as
 	\mqty[x_1 \\y_1] &= \mqty[a_{\min}\cos{\phi}\\\kappa a_{\min}\sin{\phi}]
 	\label{eq:inner_ellipse}
 \end{align}
-Meanwhile the blanket must be implemented as an ellipse or swelled ellipse. The true ellipse results in a difference of thickness in the blanket while the second results in a blanket of equal thickness throughout the structure. To this, the choice of implementing the blanket as a true ellipse has been made, since it simplifies derivations a bit. Note however, that keeping a constant thickness is the preferable option as it will reduce the engineering volume and hence the cost of the machine.\\
+Meanwhile the blanket must be implemented as an ellipse or swelled ellipse. The true ellipse results in a thickness difference throughout the blanket, while the second model results in a blanket of equal thickness throughout. To this, the choice of implementing the blanket as a true ellipse has been made, since it simplifies derivations a bit. Note however, that keeping a constant thickness is the preferable option as it will reduce the engineering volume and hence the cost of the machine.\\
 The outer layer is parameterised
 \begin{align}
 	\mqty[x_2 \\y_2] &= \mqty[\pqty{b+a_{\min}}\cos{\phi}\\\kappa \pqty{b+a_{\min}}\sin{\phi}]
 	\label{eq:outer_ellipse}
 \end{align}
-with $b$ the blanket thickness at the minor ellipse axis. Choosing for now, $a_{\min}=2$, $\kappa=2$ and $b=1.2$, \ref{eq:inner_ellipse} and \ref{eq:outer_ellipse} are plotted on Figure \ref{ShTh} along with the variation in thickness of the blanket.
+with $b$ the blanket thickness at the minor ellipse axis. Choosing for now, $a_{\min}=2$, $\kappa=2$ and $b=1.2$, \cref{eq:inner_ellipse} and \cref{eq:outer_ellipse} are plotted on Figure \cref{ShTh} along with the variation in thickness of the blanket.
 \begin{wrapfigure}[14]{r}{.4\textwidth}
 	\vspace{-5mm}
 	\includegraphics[width=.4\textwidth]{MatlabFigures/ShieldThickness/ShieldThickness.eps}
 	\caption{The profile of the blanket-and-shield and the thickness as a function of the angle around origo, \(\phi\).}
 	\label{ShTh}
 \end{wrapfigure}
-Given \ref{eq:inner_ellipse} and \ref{eq:outer_ellipse}, the engineering volume can easily be derived if $c\,\cos(\phi)$ and $\kappa\, c\,\sin(\phi)$ is added to the x and y-direction in \ref{eq:outer_ellipse} respectively, where $c$ is the minimum thickness of the magnetic coils that provide the torroidal field. \\
+Given \cref{eq:inner_ellipse} and \cref{eq:outer_ellipse}, the engineering volume can easily be derived if $c\,\cos(\phi)$ and $\kappa\, c\,\sin(\phi)$ is added to the x and y-direction in \cref{eq:outer_ellipse} respectively, where $c$ is the minimum thickness of the magnetic coils that provide the torroidal field. \\
 The cross sectional area of an ellipse is $A_{\si{e}}=\pi\, a_{\min}\, a_{\max}$ so the engineered volume becomes
 \begin{align}
 	V_{\si{I}} & =2\,\pi\, R_{0}\,(A_{\si{e,outer}}-A_{\si{e,inner}}) \nonumber                        \\
@@ -130,7 +130,7 @@ and the plasma volume is similarly calculated as $V_{\si{P}}=2\,\pi^2\, R_{0}\,\
 \begin{align}
 	S_{\si{p}}=2\,\pi\, R_{0}\,\pi\,(3\,(a_{\min}+\kappa\, a_{\min})-\sqrt{(3\, a_{\min}+\kappa\, a_{\min})\,(a_{\min}+3\,\kappa\, a_{\min})})
 \end{align}
-Using the same arguments as in the book, the B-field in the centre is surprisingly unchanged when going to the elliptical model. Now c is also approximated, or rather overestimated using a slight change to eq. (5.24) in the textbook. Since the force grows with $a_{\min}$ inserting $\kappa\, a_{\min}$ instead yields an overestimation on the vertical force on the magnet. The tensile forces are the same, so the force balance leads to
+Using the same arguments as in the book, the B-field in the centre is surprisingly unchanged when going to the elliptical model. Now c is also approximated, or rather overestimated using a slight change to Eq. (5.24) in the textbook. Since the force grows with $a_{\min}$, inserting $\kappa\, a_{\min}$ instead yields an overestimation on the vertical force on the magnet. The tensile forces are the same, so the force balance leads to
 \begin{align}
 	c=\frac{2\,\xi}{1-\xi}(\kappa\, a+b)
 \end{align}
@@ -160,7 +160,7 @@ with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new equations are in
 	\label{tab:ellip_output}
 \end{table}
 \subsection{Main parameters for DEMO}
-Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters seen in table \ref{tab:DEMO}. Since $R_{0}$ is directly proportional to the electric power this of course increases linearly. The other geometric output parameters regarding areas and volumes also increase as a result. $\beta$ has decreased a lot, so the plasma is not confined effectively in DEMO.
+Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters seen in  \cref{tab:DEMO}. Since $R_{0}$ is directly proportional to the electric power, it increases linearly. The other geometric output parameters regarding areas and volumes also increase as a result. $\beta$ has decreased a lot, so the plasma is not confined effectively in DEMO.
 \begin{table}
 	\centering
 	\begin{tabular}{llr}
@@ -208,30 +208,30 @@ With $P_{\si{E}}$, $\kappa=2$ and $A=R_{0}/a_{\min}=3\Leftrightarrow R_{0}=3\, a
 		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.2588}{\second}             \\
 		\bottomrule
 	\end{tabular}
-	\caption{Output quantities for DEMO using the elliptical model with $P_{si{E}}=2$, $\kappa=2$ and setting $A=3$}
+	\caption{Output quantities for DEMO using the elliptical model with $P_{\si{E}}=2$, $\kappa=2$ and $A=3$.}
 	\label{tab:DEMO2}
 \end{table}
 \subsection{\textit{A} and \mathinhead{\kappa}{\kappa} as free parameters}
 Designing the tokamak with $\kappa$ and $A$ as free parameters has led us to try and maximise profitability from $V_{P}/A_{P}$ and $\beta$. Profitability in this context means that increasing the size of the tokamak leads to an increase in these parameters. However, there is a point when the change vs increase in size becomes constant. This means that we do not profit from increasing the size any longer. \\
-$V_{\si{P}}$ and $A_{\si{P}}$ were calculated earlier so
+$V_{\mathrm{P}}$ and $A_{\mathrm{P}}$ were calculated earlier so
 \begin{align}
 	\frac{V_{\si{P}}}{A_{\si{P}}} & =\frac{2\,\pi\, R_{0}\,\kappa\, a_{\min}^{2}}{2\,\pi\, R_{0}\,\pi\, (3\,(a+\kappa\, a_{\min})-\sqrt{(3\, a_{\min}+\kappa\, a_{\min})\,(a+3\,\kappa\, a_{\min})})} \nonumber \\
 	                              & =\frac{\kappa\, a_{\min}}{\pi\,(3+3\,\kappa-\sqrt{3+\kappa}\,\sqrt{1+3\,\kappa})}
 \end{align}
-The expression scales linearly with $a_{min}$ so we set it equal to $1\si{m}$ since it has no effect on the choice of $\kappa$. Differentiating with respect to $\kappa$ and plotting is done, with the results shown in \cref{kappa_change}. Considering the figure, $\kappa=2.5$ is chosen as the change is close enough to zero given this value.\\
-Now work will be done towards choosing a value for $A$. First for geometric reasons a minimum $R_{0}$ is calculated. It is simply $R_{0}=a_{\min}+b+c$ where $a_{min}$ is to be determined, $b=1.2\si{m}$ and $c=\frac{2\,\xi}{1-\xi}(\kappa\, a_{\min}+b)$. Meanwhile $A$ is chosen to optimise $\beta$. Inserting $R_{0}$ into $B_{0}$ in the textbook yields
+The expression scales linearly with $a_{min}$ so we set it equal to \SI{1}{\meter} since it has no effect on the choice of $\kappa$. Differentiating with respect to $\kappa$ and plotting is done, with the results shown in \cref{kappa_change}. Considering the figure, $\kappa=2.5$ is chosen as the change is close enough to zero given this value.\\
+Now work will be done towards choosing a value for $A$. First, for geometric reasons, a minimum $R_{0}$ is calculated. It is simply $R_{0}=a_{\min}+b+c$ where $a_{min}$ is to be determined, $b=1.2\si{m}$ and $c=\frac{2\,\xi}{1-\xi}(\kappa\, a_{\min}+b)$. Meanwhile $A$ is chosen to optimise $\beta$. Inserting $R_{0}$ into $B_{0}$ in the textbook yields
 \begin{align}
 	B_{0}=\frac{2\,\xi\,(\kappa\, a_{\min}+b)\, B_{max}}{((2\,\kappa-1)\, a_{\min}+a+b)}=\frac{178.75\, a_{\min}+85.8}{55.5+36\, a_{\min}}
 \end{align}
 Where units has been disregarded and $\xi=0.11$, $b=1.2$, $\kappa=2.5$ and $B_{\si{max}}=13$ has been inserted. Meanwhile, inserting the textbook's expression for $P_{\si{dens}}$ into the expression for $p$ and inserting the input parameters yields
 \begin{align}
-	p=1.042\si{E}6\,\sqrt{\frac{1}{\kappa\, a_{\min}}}
+	p=\SI{1.042e6}{}\,\sqrt{\frac{1}{\kappa\, a_{\min}}}
 \end{align}
 Thus \(\beta\) becomes
 \begin{align}
 	\beta=\frac{2148\,(a_{\min}+1.542)^{2}}{\sqrt{a_{\min}}\,(178.8\, a_{\min}+85.8)^{2}}
 \end{align}
-This function is plotted in \cref{beta_vs_a} and for $(\beta=10\%$ $a=1.938\si{\metre})$ is achieved. Therefore \(R_{0}=1.9378\si{\metre}+1.2\si{\metre}+2\cdot 0.11/(1-0.11)\cdot 2.5\cdot 1.938\si{\metre}+1.2\si{\metre}=4.632\si{\metre}\) which means \(A=4.632\si{\metre}/1.938\si{\metre}=2.390\)
+This function is plotted in \cref{beta_vs_a}, and for $\beta=10\%$ $a=\SI{1.938}{\meter})$ is achieved. Therefore $(R_{0}=\SI{1.9378}{\meter}+\SI{1.2}{\meter}+2\cdot 0.11/(1-0.11)\cdot 2.5\cdot \SI{1.938}{\meter}+\SI{1.2}{\meter}=\SI{4.632}{\meter})$ which means $A=\SI{4.632}{\meter}/\SI{1.938}{\meter}=\SI{2.390}{\meter}$
 \begin{figure}
 	\centering
 	\begin{subfigure}[b]{.40\textwidth}
@@ -257,8 +257,8 @@ This function is plotted in \cref{beta_vs_a} and for $(\beta=10\%$ $a=1.938\si{\
 		\(b\)                     & Blanket-and-shield thickness                                   & \SI{1.20}{\meter}              \\
 		\(c\)                     & Magnet coil thickness                                          & \SI{1.30}{\meter}              \\
 		\(a\)                     & Minor radius                                                   & \SI{2.01}{\meter}              \\
-		\(R_0\)                   & Major radius                                                   & \SI{2.60}{\meter}              \\
-		\(A\)                     & Aspect ratio                                                   & 1.29                           \\
+		\(R_0\)                   & Major radius                                                   & \SI{4.632}{\meter}              \\
+		\(A\)                     & Aspect ratio                                                   & 2.390                           \\
 		\(A_p\)                   & Plasma surface                                                 & \SI{630}{\meter\squared}       \\
 		\(V_p\)                   & Plasma volume                                                  & \SI{414}{\meter\cubed}         \\
 		\(P_\mathrm{dens}\)       & Power density                                                  & \SI{9.49e06}{\watt\per\meter}  \\
