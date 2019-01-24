@@ -2,7 +2,7 @@
 \subsection{Freidberg's simple reactor model}
 In the \nth{5} chapter of the textbook by Freidberg\cite{freidberg_plasma_2007}, he makes a simple model for designing a fusion reactor power plant.
 The model uses simple geometric and electromagnetic assumptions with little involvement of plasma physics. The variables put into the model are shown in \cref{VFR}.
-\begin{table}
+\begin{table}[H]
 	\centering
 	\begin{tabular}{lr}
 		\toprule
@@ -22,7 +22,7 @@ The model uses simple geometric and electromagnetic assumptions with little invo
 	\label{VFR}
 \end{table}
 \cref{QFR} shows the output quantities from the model.
-\begin{table}
+\begin{table}[H]
 	\centering
 	\begin{tabular}{llr}
 		\toprule
@@ -55,11 +55,7 @@ As an example, the model is run with the following parameters:
 \end{alignat}
 Note that \(C_F\) and \(C_I\) has been omitted as these serve no purpose for this assignment. It is not of interest how expensive the plant will be. Rather the geometries and physical quantities are of interest.
 The results from the model is given in \cref{QFR}.
-
-
 \subsection{Model sensitivity}
-
-
 At this point Freidberg has provided a model that produce some reasonable results for a power plant. It could be interesting to see how this model behaves when some vital parameters are changed. In the last section the model used the parameters shown in \cref{Inputparam}. In \cref{variparam} are listed some parameter ranges.
 \begin{alignat}{3}
 	P_E &: \SIrange{500}{1000}{\mega\watt} & \quad P_W &: \SIrange{0}{10}{\mega\watt\per\meter\squared}\nonumber\\
@@ -73,7 +69,9 @@ At this point Freidberg has provided a model that produce some reasonable result
 	\item Repeat with another range from \cref{variparam}.
 \end{enumerate}
 The iteration showed some interesting breakdowns in the model. When varying the desired power output there was a breakdown in magnetic field strength at the magnetic axis as well as in the normalised plasma pressure. This is shown in \cref{PE}.
-\begin{figure}
+In this case, limits for what is physically possible broke and in these cases the model is unusable.
+The full gallery of model output is found in \cref{ITFR}.
+\begin{figure}[H]
 	\centering
   \begin{subfigure}[b]{.46\textwidth}
     \includegraphics[width=\textwidth]{MatlabFigures/PE/f7.eps}
@@ -89,8 +87,6 @@ The iteration showed some interesting breakdowns in the model. When varying the 
 	\caption{Model breakdown when iterating over desired power output.}
 	\label{PE}
 \end{figure}
-In this case, limits for what is physically possible broke and in these cases the model is unusable.
-The full gallery of model output is found in \cref{ITFR}.
 \subsection{Elliptic Cross section}
 Freidberg's model assume a circular cross section of the plasma. In reality this is not the case. We will now make a more realistic, yet still approximate reactor for an elliptic plasma cross section.
 In describing the geometry one refers to the elongation ratio:
@@ -112,9 +108,9 @@ The outer layer is parameterised
 	\mqty[x_2 \\y_2] &= \mqty[\pqty{b+a_{\min}}\cos{\phi}\\\kappa \pqty{b+a_{\min}}\sin{\phi}]
 	\label{eq:outer_ellipse}
 \end{align}
-with $b$ the blanket thickness at the minor ellipse axis. Choosing for now, $a_{\min}=2$, $\kappa=2$ and $b=1.2$, \cref{eq:inner_ellipse} and \cref{eq:outer_ellipse} are plotted on Figure \cref{ShTh} along with the variation in thickness of the blanket.
+with $b$ the blanket thickness at the minor ellipse axis. Choosing for now, $a_{\min}=2$, $\kappa=2$ and $b=1.2$, \cref{eq:inner_ellipse} and \cref{eq:outer_ellipse} are plotted on Figure \cref{ShTh} along with the variation in thickness of the blanket.\newline
 \begin{wrapfigure}[14]{r}{.4\textwidth}
-	\vspace{3mm}
+	\vspace{-5mm}
 	\includegraphics[width=.4\textwidth]{MatlabFigures/ShieldThickness/ShieldThickness.eps}
 	\caption{The profile of the blanket-and-shield and the thickness as a function of the angle around origin, \(\phi\).}
 	\label{ShTh}
@@ -156,6 +152,7 @@ with $\xi=B_{si{c}}^2/4\,\mu_{0}\,\sigma_{\si{max}}$. These new equations are in
 		\(\tau_{E_\mathrm{min}}\) & Min confinement time for \(\pqty{p\times\tau_E}_\mathrm{min}\) & \SI{1.6172}{\second}             \\
 		\bottomrule
 	\end{tabular}
+	\captionsetup{justification=centering,margin=3.5cm}
 	\caption{Output quantities from the elliptical model}
 	\label{tab:ellip_output}
 \end{table}
@@ -186,7 +183,7 @@ Setting $P_{\si{E}}=2000$ in the elliptical model yields the output parameters s
 	\label{tab:DEMO}
 \end{table}
 \subsection{Designs for DEMO}
-With $P_{\si{E}}$, $\kappa=2$ and $A=R_{0}/a_{\min}=3\Leftrightarrow R_{0}=3\, a_{\min}$. This is implemented in the code and the results are displayed in \ref{tab:DEMO2}. $\beta$ has increased a bit but only to $4.55\%$. $R_{0}$ has been forced down, so the plasma volume etc. has decreased as well. Overall it seems like a smaller $R_{0}$ while keeping $a_{min}$ fixed is an improvement. Or in other words, $A=3$ is more desirable than $A\approx 5$.
+With $P_{\si{E}}$, $\kappa=2$ and $A=R_{0}/a_{\min}=3\Leftrightarrow R_{0}=3\, a_{\min}$. This is implemented in the code and the results are displayed in \cref{tab:DEMO2}. $\beta$ has increased a bit but only to $4.55\%$. $R_{0}$ has been forced down, so the plasma volume etc. has decreased as well. Overall it seems like a smaller $R_{0}$ while keeping $a_{min}$ fixed is an improvement. Or in other words, $A=3$ is more desirable than $A\approx 5$.
 \begin{table}
 	\centering
 	\begin{tabular}{llr}

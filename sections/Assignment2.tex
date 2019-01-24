@@ -25,7 +25,6 @@ With a probing frequency much higher than the plasma frequency and the critical 
 \begin{align}
 	N_{\mathrm{O}} & = \sqrt{1-\frac{n_e}{n_c}} \approx 1-\frac{1}{2}\frac{n_e}{n_c} -\frac{\omega_p^2}{2\omega^2}
 \end{align}
-
 With sufficient accuracy, the linear dependence of the O-mode refractive index on the electron density is obtained if the normalised quantities obey:
 \begin{align}
 	\frac{n_e}{n_c} \leq 0.4 \quad \frac{\omega_p}{\omega} \leq 0.6
@@ -64,6 +63,7 @@ Since the cutoff is given by \cref{co} and since we want to measure densities up
 Given the available emitters, the best emitter is therefore the one with \(f=60\si{GHz}\).
 \subsection{Beam Phase shifts}
 \begin{wrapfigure}[12]{r}{.5\textwidth}
+	\vspace{-5mm}
 	\includegraphics[width=.5\textwidth]{MatlabFigures/PhaseShift/PhaseShift.eps}
 	\caption{Electron densities for different wavelengths and phase shifts}
 	\label{PhPlot}
@@ -78,7 +78,7 @@ So for different average electron densities through the plasma, one can plot the
 Using the code in \cref{PSD} the plot in \cref{PhPlot} is generated. The measured phase shift is then correlated to an electron density using \cref{PhPlot}.
 \subsection{Evolving beam width}
 \begin{wrapfigure}[14]{r}{.4\textwidth}
-	\vspace{-5mm}
+	\vspace{-8mm}
 	\includegraphics[width=.4\textwidth]{Figures/PropEx.eps}
 	\caption{Sketch of Gaussian beam propagation with indication of \(w_0\) and \(w(z)\).}
 	\label{PropEx}
@@ -99,14 +99,14 @@ From this equation one can track the spatial propagation of the wave. In this pr
 	\SI{130}{\giga\hertz} & : \quad w(z)=0.0275\sqrt{\pqty{1+\frac{9.543\times10^7 z}{0.0275^2 \ 130\times10^9}}^2}\label{130}
 \end{align}
 For the three given sources in this project, the beam waist has been plotted on \cref{BeamProp}
-\newline
-
+\begin{center}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.5\textwidth]{Figures/BeamProp.eps}
 	\caption{Beam Waist for the three microwave sources. The functions are \cref{60,98,,130}.}
 	\label{BeamProp}
 \end{figure}
+\end{center}
 It is undesirable for some of the beam to not reach the output port and instead propagate into the reactor wall, as this will result in a lesser signal strength. Therefore it can be necessary to deploy a Gaussian telescope.
 \subsection{Gaussian beam telescope interferometer}
 In order to control the beam waist, one can use a Gaussian beam telescope arrangement around the reactor. A lens is placed between the source and the reactor input port and again between the output port and the receiver. From chapter 5 in ``Fusion Plasma Diagnostics with mm-Waves''\cite{PlasmaDiagnosis} the authors explains how such an arrangement can be obtained. Starting with the focal lengths of the lenses,
@@ -150,14 +150,14 @@ The script gave the results:
 Furthermore the code plots a sketch of the desired interferometer setup. The sketch can be seen in \cref{AWESOME}.\newline
 \begin{figure}
 	\centering
-	\includegraphics[width=.7\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
+	\includegraphics[width=\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
 	\caption{Gaussian beam telescope interferometer setup with input parameters shown in \cref{interin} and output parameters shown in \cref{interou}}
 	\label{AWESOME}
 \end{figure}
-\begin{wrapfigure}[14]{r}{.3\textwidth}
-	\centering
-	\includegraphics[width=.3\textwidth]{Figures/Refraction.eps}
-	\caption{Refraction of the probing beam at centre  (top) and off centre (bottom).}
-	\label{Refrac}
-\end{wrapfigure}
 Lastly it should be mentioned that the beam waist confinement does not matter if the wave is refracted into the side of the reactor. As the plasma density varies from the centre and out, the plasma itself act as a variable lens with variable refractive indices. If the beam is emitted straight through the centre, the refractive indices will only shorten and lengthen the wavelength back to normal, however if the beam is emitted off centre, it will be refracted away from the centre. In such a setup, further calculations need to be conducted to determine variation in signal strength, phase and wavelength. The two described setups are depicted on \cref{Refrac}.
+\begin{figure}
+	\centering
+	\includegraphics[width=.7\textwidth]{Figures/Refraction.eps}
+	\caption{Refraction of the probing beam at centre (left) and off centre (right).}
+	\label{Refrac}
+\end{figure}
