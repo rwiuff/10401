@@ -8,8 +8,8 @@ f_0 = 60; % 1st beam frequency [GHz]
 f_1 = 98; % 2nd beam frequency [GHz]
 f_2 = 130; % 3rd beam frequency [GHz]
 
-n_0 = 10^16; % Lower electron density
-n_1 = 10^18; % Hihger electron density
+n_0 = 10^(16); % Lower electron density
+n_1 = 10^(18); % Hihger electron density
 %-------------------------------------------------------------------------%
 
 c = 299792458; % The speec of light [m/s]
@@ -20,13 +20,13 @@ Phi1 = []; % Phase shift array
 Phi2 = []; % Phase shift array
 
 for i = 1:1000 % Calculates Phase Shifts for frequency = f_0
-    Phi0 = horzcat(Phi0, 8.416e-8*(y(i) / (f_0 * 10^9)));
+    Phi0 = horzcat(Phi0, (8.416*10^(-8)*((y(i) / (f_0 * 10^9))))/0.25);
 end
 for i = 1:1000 % Calculates Phase Shifts for frequency = f_1
-    Phi1 = horzcat(Phi1, 8.416e-8*(y(i) / (f_1 * 10^9)));
+    Phi1 = horzcat(Phi1, (8.416*10^(-8)*((y(i) / (f_1 * 10^9))))/0.25);
 end
 for i = 1:1000 % Calculates Phase Shifts for frequency = f_2
-    Phi2 = horzcat(Phi2, 8.416e-8*(y(i) / (f_2 * 10^9)));
+    Phi2 = horzcat(Phi2, (8.416*10^(-8)*((y(i) / (f_2 * 10^9))))/0.25);
 end
 
 l = figure; % Creates figure

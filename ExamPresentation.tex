@@ -37,6 +37,12 @@
 \usepgfplotslibrary{units}
 %\tikzexternalize
 
+\usepackage{appendixnumberbeamer}
+% Add total frame count to slides, optional. From Stefan,
+% http://www.latex-community.org/forum/viewtopic.php?f=4&t=2173
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+  \insertshorttitle\hfill\insertframenumber\,/\,\inserttotalframenumber}
+
 % ------------------------ Define note handout layout -------------------------
 \newcommand{\pgflayout}{
 	\pgfpagesphysicalpageoptions
@@ -118,16 +124,17 @@
 \subsection{Introduction}
 \begin{frame}{Introduction}
 	\begin{center}
-		\textbf{DTU Tokamak Interferometer} \hspace{.9cm} \textbf{Fusor Spectral Lines}
 		\begin{columns}[t]
 			\column{.7\textwidth}
+			\textbf{DTU Tokamak Interferometer}\newline
+			\vspace{.26em}
 			\begin{description}[Goal \# 1]
 				\item[Title] Diagnostics via interferometry
 				\item[Goal \# 1] To calculate the phase shift induced by O-mode plasma and investigate different microwave sources
 				\item[Goal \# 2] To design a lens system to accommodate the beam propagation in the small DTU tokamak
 			\end{description}
-			\vskip1.5em
 			\column{.7\textwidth}
+			\textbf{Fusor Spectral Lines}\newline
 			\begin{description}[Goal \# 1]
 				\item[Title] Fusor exercise
 				\item[Goal \# 1] To measure spectral lines from fusion in the inertial electrostatic confinement fusor at DTU
@@ -194,11 +201,10 @@
 		             & \approx 1-\frac{1}{2}\frac{n_\mathrm{e}}{\mathrm{c}} \\
 		             & = 1-\frac{\omega_p^2}{2\omega^2}
 	\end{align}
-	According to Hartfuß and Geist:
-	Linear O-mode refractive index and electron density dependence if
-	\begin{align}
-		\frac{n_\mathrm{e}}{n_\mathrm{c}} \leq0.4 \quad \frac{\omega_p}{\omega}           \leq0.6
-	\end{align}
+	% O-mode refractive index and electron density linear dependent if:
+	% \begin{align}
+	% 	\frac{n_\mathrm{e}}{n_\mathrm{c}} \leq0.4 \quad \frac{\omega_p}{\omega}           \leq0.6
+	% \end{align}
 \end{frame}
 
 \begin{frame}{Phase shift}
@@ -318,15 +324,6 @@
 \end{frame}
 
 \begin{frame}{Energy and velocity}
-	\begin{align}
-		\qq{Velocity for hydrogen:}        & v = 3.12\times10^4 \sqrt{x}+1.72\times10^5   \nonumber \\
-		\qq{Velocity for deuterium:}       & v = 0.7666\times10^4\sqrt{x}+2.295\times10^5 \nonumber \\
-		\qq{Kinetic energy for hydrogen:}  & KE = 11.7x+287.7                             \nonumber \\
-		\qq{Kinetic energy for deuterium:} & KE = 4.387x+637.3 \nonumber
-	\end{align}
-\end{frame}
-
-\begin{frame}{Energy and velocity}
 	\centering
 	\includegraphics[width=\textwidth]{MatlabFigures/Asign3/KineticVelo.eps}
 \end{frame}
@@ -336,6 +333,17 @@
 \subtitle{}
 \begin{frame}
 	\titlepage
+\end{frame}
+
+\appendix
+\section{Energy and velocity fits}
+\begin{frame}{Energy and velocity fits}
+	\begin{align}
+		\qq{Velocity for hydrogen:}        & v = 3.12\times10^4 \sqrt{x}+1.72\times10^5   \nonumber \\
+		\qq{Velocity for deuterium:}       & v = 0.7666\times10^4\sqrt{x}+2.295\times10^5 \nonumber \\
+		\qq{Kinetic energy for hydrogen:}  & KE = 11.7x+287.7                             \nonumber \\
+		\qq{Kinetic energy for deuterium:} & KE = 4.387x+637.3 \nonumber
+	\end{align}
 \end{frame}
 
 \end{document}
