@@ -97,10 +97,10 @@
 \setbeamercolor{description item}{fg=DTUred}
 % -----------------------------------------------------------------------------
 
-\title{Assignment 1 \& 2}
+\title{Project presentations}
 \subtitle{Course 10401}
 \author{\scshape\centering Nicklas Kihm (s143286) \\ Rasmus Kronborg Finnemann Wiuff (s163977) \\ \vspace{7.5mm} \includegraphics[width=1cm]{Figures/DTU3CMYK.eps}}
-\date{\scshape January 17, 2019}
+\date{\scshape January 25, 2019}
 
 \begin{document}
 
@@ -115,21 +115,99 @@
 	\begin{center}
 		\textbf{Assignment 1} \hspace{5cm} \textbf{Assignment 2}
 		\begin{columns}[c]
-			\column{.7\textwidth}
+			\column{.3\textwidth}
 			\begin{description}[Goal \# 1]
 				\item[Title] Fusion power plant
 				\item[Goal] Design a tokamak using a modified version of the model presented in Freidberg's book.
 			\end{description}
 			\vskip1.5em
-			\column{.7\textwidth}
+			\column{.3\textwidth}
 			\begin{description}[Goal \# 1]
 				\item[Title] Design of interferometer for DTU tokamak
 				\item[Goal \# 1] To calculate the phase shift induced by O-mode radiation and investigate different microwave sources
 				\item[Goal \# 2] To design a lens system to accommodate the beam propagation in the small DTU tokamak
 			\end{description}
+			\vskip1.5em
+			\column{.3\textwidth}
+			\begin{description}[Goal \# 1]
+				\item[Title] Fusor exercise 
+				\item[Goal \# 1] Determine plasma constituents, measure spectral line widths and process the data
+				\item[Goal \# 2] Calculate neutron production rates as a function of voltage and current
+			\end{description}
 		\end{columns}
 	\end{center}
 \end{frame}
+
+
+
+\section{Diagnostic Interferometer}
+
+\subsection{Diagnostic Interferometer}
+
+\begin{frame}{Cut off}
+	\begin{align}
+		n_e < n_c & = \omega^2\frac{\epsilon_0\cdot m_{e0}}{e^2}
+	\end{align}
+	\begin{align}
+		\omega^2\frac{\epsilon_0\cdot m_{e0}}{e^2} & = \omega^2\frac{\SI{8.854e-12}{\farad\per\meter}\SI{9.109e-31}{\kilo\gram}}{\SI{1.602e-19}{\coulomb}} \\
+		                                           & \Downarrow\nonumber                                                                                   \\
+		n_e                                        & < 0.000314\omega^2
+	\end{align}
+	At densities of \SI{e18}{\per\meter\cubed} the minimum frequency is:
+	\begin{align}
+		\frac{\omega}{2\pi} & > \frac{\sqrt{\frac{\SI{e18}{\per\meter\cubed}}{0.000314}}}{2\pi} \\
+		                    & \Downarrow\nonumber                                               \\
+		f                   & \approx \SI{9}{\giga\hertz}
+	\end{align}
+\end{frame}
+\begin{frame}{Four Sources}
+	\begin{columns}
+		\column{.6\textwidth}\\
+		At a density of \SI{e18}{\per\meter\cubed} the minimum frequency of the wave is:
+		\(f \approx \SI{9}{\giga\hertz}\)\newline
+		\begin{itemize}
+			\item \SI{2.45}{\giga\hertz}
+			\item \SI{60}{\giga\hertz} (Transparent)
+			\item \SI{98}{\giga\hertz} (Transparent)
+			\item \SI{130}{\giga\hertz} (Transparent)
+		\end{itemize}
+		\column{.6\textwidth}
+		\includegraphics[width=\textwidth]{Figures/BeamProp.eps}
+	\end{columns}
+\end{frame}
+\begin{frame}{Phaseshifts}
+	\centering
+	\begin{table}
+		\begin{tabular}{lrr}
+
+			Frequency \(\bqty{\si{\giga\hertz}}\) & \multicolumn{2}{c}{Phase at\(\bqty{2\pi}\)}                                                 \\
+			                                      & \(n_e=\SI{10e16}{\per\meter\cubed}\)        & Phase at \(n_e=\SI{10e18}{\per\meter\cubed}\) \\
+			2.45                                  & 0.8620                                      & 86.17                                         \\
+			60                                    & 0.0352                                      & 3.519                                         \\
+			98                                    & 0.0215                                      & 2.154                                         \\
+			130                                   & 0.0162                                      & 1.624                                         \\
+		\end{tabular}
+	\end{table}
+\end{frame}
+\begin{frame}{Gaussian Telescope}
+	\begin{columns}
+		\column{.6\textwidth}
+		\begin{itemize}
+			\item Input parameters:\\
+			\(w_0 = \SI{0.0275}{\meter}\), \(freq = \SI{60}{\giga\hertz}\), \(d_0 = \SI{0.2}{\meter}\), \(f_0 = \SI{0.25}{\meter}\), \(f_1 = \SI{0.2}{\meter}\)
+			\item Output distances:\\
+			\(d_1 = \SI{0.22}{\meter}\), \(d_2 = \SI{0.23}{\meter}\), \(d_3 = \SI{0.23}{\meter}\)
+			\item Output beamwaists:\\
+			\(w_1 = \SI{0.0145}{\meter}\), \(w_2 = \SI{0.022}{\meter}\)
+			\item Wavelenght: \(\lambda = \SI{0.005}{\meter}\)
+		\end{itemize}
+		\column{.7\textwidth}
+		\includegraphics[width=\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
+	\end{columns}
+\end{frame}
+
+
+
 
 
 \section{Fusion power plant}
@@ -319,69 +397,6 @@
 \end{frame}
 
 
-\section{Diagnostic Interferometer}
-\subsection{Diagnostic Interferometer}
-\begin{frame}{Cut off}
-	\begin{align}
-		n_e < n_c & = \omega^2\frac{\epsilon_0\cdot m_{e0}}{e^2}
-	\end{align}
-	\begin{align}
-		\omega^2\frac{\epsilon_0\cdot m_{e0}}{e^2} & = \omega^2\frac{\SI{8.854e-12}{\farad\per\meter}\SI{9.109e-31}{\kilo\gram}}{\SI{1.602e-19}{\coulomb}} \\
-		                                           & \Downarrow\nonumber                                                                                   \\
-		n_e                                        & < 0.000314\omega^2
-	\end{align}
-	At densities of \SI{e18}{\per\meter\cubed} the minimum frequency is:
-	\begin{align}
-		\frac{\omega}{2\pi} & > \frac{\sqrt{\frac{\SI{e18}{\per\meter\cubed}}{0.000314}}}{2\pi} \\
-		                    & \Downarrow\nonumber                                               \\
-		f                   & \approx \SI{9}{\giga\hertz}
-	\end{align}
-\end{frame}
-\begin{frame}{Four Sources}
-	\begin{columns}
-		\column{.6\textwidth}\\
-		At a density of \SI{e18}{\per\meter\cubed} the minimum frequency of the wave is:
-		\(f \approx \SI{9}{\giga\hertz}\)\newline
-		\begin{itemize}
-			\item \SI{2.45}{\giga\hertz}
-			\item \SI{60}{\giga\hertz} (Transparent)
-			\item \SI{98}{\giga\hertz} (Transparent)
-			\item \SI{130}{\giga\hertz} (Transparent)
-		\end{itemize}
-		\column{.6\textwidth}
-		\includegraphics[width=\textwidth]{Figures/BeamProp.eps}
-	\end{columns}
-\end{frame}
-\begin{frame}{Phaseshifts}
-	\centering
-	\begin{table}
-		\begin{tabular}{lrr}
-
-			Frequency \(\bqty{\si{\giga\hertz}}\) & \multicolumn{2}{c}{Phase at\(\bqty{2\pi}\)}                                                 \\
-			                                      & \(n_e=\SI{10e16}{\per\meter\cubed}\)        & Phase at \(n_e=\SI{10e18}{\per\meter\cubed}\) \\
-			2.45                                  & 0.8620                                      & 86.17                                         \\
-			60                                    & 0.0352                                      & 3.519                                         \\
-			98                                    & 0.0215                                      & 2.154                                         \\
-			130                                   & 0.0162                                      & 1.624                                         \\
-		\end{tabular}
-	\end{table}
-\end{frame}
-\begin{frame}{Gaussian Telescope}
-	\begin{columns}
-		\column{.6\textwidth}
-		\begin{itemize}
-			\item Input parameters:\\
-			\(w_0 = \SI{0.0275}{\meter}\), \(freq = \SI{60}{\giga\hertz}\), \(d_0 = \SI{0.2}{\meter}\), \(f_0 = \SI{0.25}{\meter}\), \(f_1 = \SI{0.2}{\meter}\)
-			\item Output distances:\\
-			\(d_1 = \SI{0.22}{\meter}\), \(d_2 = \SI{0.23}{\meter}\), \(d_3 = \SI{0.23}{\meter}\)
-			\item Output beamwaists:\\
-			\(w_1 = \SI{0.0145}{\meter}\), \(w_2 = \SI{0.022}{\meter}\)
-			\item Wavelenght: \(\lambda = \SI{0.005}{\meter}\)
-		\end{itemize}
-		\column{.7\textwidth}
-		\includegraphics[width=\textwidth]{MatlabFigures/Interferometer/Interferometer.eps}
-	\end{columns}
-\end{frame}
 \section*{Questions}
 \title{Questions}
 \subtitle{}
