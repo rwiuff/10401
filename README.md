@@ -5,7 +5,7 @@ This repository includes Matlab code, eps figures of generated plot, LaTeX code 
 The folder structure is as such:\
 \
 **Top Folder**\
-Compiled LaTeX documents
+Compiled LaTeX documents\
 Main .tex documents for the report and beamer presentations
 * Data: Data used by Matlab
   * RawData: Raw data from experiments
